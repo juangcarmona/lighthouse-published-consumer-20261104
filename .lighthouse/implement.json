@@ -28,7 +28,9 @@
         ".github/workflows/ci.yml",
         ".lighthouse/github.json",
         ".lighthouse/implement.json",
-        "docs/consumer-contract.md"
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
       ],
       "corrections": {
         "src/summary.test.mjs": "Add meaningful coverage for the specifically requested summary outcome; preserve existing assertions.",
