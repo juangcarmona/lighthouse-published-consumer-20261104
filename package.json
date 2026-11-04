@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@juangcarmona/lighthouse": "0.12.38"
+  },
+  "name": "published-delivery-consumer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test src/*.test.mjs",
+    "verify": "node scripts/consumer-preflight.mjs && npm test"
+  }
+}
