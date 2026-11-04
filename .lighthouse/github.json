@@ -17,6 +17,11 @@
     "postMergeWorkflows": [
       "ci.yml"
     ],
-    "protectionObservations": []
+    "protectionObservations": [
+      {
+        "id": 26571408,
+        "revision": "a8ef8a343393664a7e6b8e7a8567b3a41fe9ad8544fe1fe65511cd8cf1a6326c"
+      }
+    ]
   }
 }
