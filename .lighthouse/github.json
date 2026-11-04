@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "profileVersion": 1,
+  "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+  "intake": "collaborators",
+  "requiredChecks": [
+    {
+      "context": "repository",
+      "integrationId": 15368
+    }
+  ],
+  "requiredApprovals": 0,
+  "evidenceBranch": "process/retrospectives",
+  "releaseWorkflowReady": false,
+  "completion": {
+    "publishEvidence": true,
+    "postMergeWorkflows": [
+      "ci.yml"
+    ],
+    "protectionObservations": []
+  }
+}
