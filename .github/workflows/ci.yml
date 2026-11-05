@@ -20,3 +20,27 @@ jobs:
       - run: npm run verify
       - run: npx --no-install lighthouse verify
       - run: node scripts/lighthouse-guard.mjs verify
+  continue-post-merge-review:
+    needs: repository
+    if: always() && needs.repository.result == 'success' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: write
+      contents: read
+      issues: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Signal review using the exact installed registry package
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LIGHTHOUSE_CI_RESULT: ${{ needs.repository.result }}
+        run: node node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs signal-post-merge-review
