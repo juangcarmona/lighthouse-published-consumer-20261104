@@ -22,7 +22,6 @@
         "package.json",
         "package-lock.json",
         "src/summary.test.mjs",
-        "src/format-summary.test.mjs",
         "scripts/consumer-preflight.mjs",
         ".github/workflows/ci.yml",
         ".lighthouse/github.json",
@@ -32,8 +31,7 @@
         "scripts/verify-delivery-profile.mjs"
       ],
       "corrections": {
-        "src/summary.test.mjs": "Add meaningful coverage for the specifically requested summary outcome; preserve existing assertions.",
-        "src/format-summary.test.mjs": "Create meaningful coverage for the requested summary formatting outcome; do not weaken existing checks."
+        "src/summary.test.mjs": "Add meaningful coverage for the specifically requested summary outcome; preserve existing assertions."
       }
     }
   },
@@ -73,7 +71,6 @@
         "package.json",
         "package-lock.json",
         "src/summary.test.mjs",
-        "src/format-summary.test.mjs",
         "scripts/consumer-preflight.mjs",
         ".github/workflows/ci.yml",
         ".lighthouse/github.json",
