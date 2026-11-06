@@ -8,5 +8,9 @@
   "scripts": {
     "test": "node --test src/*.test.mjs",
     "verify": "node scripts/consumer-preflight.mjs && node scripts/verify-delivery-profile.mjs && npm test"
+  },
+  "devDependencies": {
+    "@fission-ai/openspec": "1.15.0",
+    "@prodshape/integration-openspec": "0.6.6"
   }
 }
