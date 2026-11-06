@@ -2,7 +2,7 @@
 id: CHG-ISSUE-12-SUMMARY
 type: product-change
 title: Formalize the existing observation summary contract
-status: draft
+status: applied
 base-revision: '8a2c240'
 operations:
   add:
