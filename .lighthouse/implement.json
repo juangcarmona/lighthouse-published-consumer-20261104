@@ -85,15 +85,11 @@
     }
   },
   "12": {
-    "scope": "Deliver only issue #12 after its exact ProductShape prerequisite is approved and applied: extract private summary classification without changing behavior, preserve all nine existing tests and check configuration, and retain only this issue own OpenSpec plan. This separately authorized maintenance continuation may add only cited-scope declarations and canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations to the four existing issue #5 planning documents. Preserve their prose, requirements, scenarios, task state and original history; no exemption or product-model change is authorized.",
+    "scope": "Deliver only issue #12 after its exact ProductShape prerequisite is approved and applied: extract private summary classification without changing behavior, preserve all nine existing tests and check configuration, and retain only this issue own OpenSpec plan.",
     "paths": [
       "src/summary.mjs",
       "src/summary.test.mjs",
-      "openspec/changes/issue-12-proposal/",
-      "openspec/changes/issue-5-proposal/proposal.md",
-      "openspec/changes/issue-5-proposal/design.md",
-      "openspec/changes/issue-5-proposal/tasks.md",
-      "openspec/changes/issue-5-proposal/specs/observation-summary/spec.md"
+      "openspec/changes/issue-12-proposal/"
     ],
     "checks": [
       [
@@ -130,18 +126,10 @@
         ".lighthouse/implement.json",
         "docs/consumer-contract.md",
         "tools/existing-tool.mjs",
-        "scripts/verify-delivery-profile.mjs",
-        "openspec/changes/issue-5-proposal/proposal.md",
-        "openspec/changes/issue-5-proposal/design.md",
-        "openspec/changes/issue-5-proposal/tasks.md",
-        "openspec/changes/issue-5-proposal/specs/observation-summary/spec.md"
+        "scripts/verify-delivery-profile.mjs"
       ],
       "corrections": {
-        "src/summary.test.mjs": "Preserve every existing assertion; add coverage only when needed to verify the behavior-preserving private-helper refactor in issue #12.",
-        "openspec/changes/issue-5-proposal/proposal.md": "Only add pdac-scope: cited and provider-generated current BR-SUMMARY-001 / FR-SUMMARY-001 citations. Preserve all original prose, requirements, scenarios, checkbox state and non-citation metadata. Do not add exemptions or drift resolutions.",
-        "openspec/changes/issue-5-proposal/design.md": "Only add pdac-scope: cited and provider-generated current BR-SUMMARY-001 / FR-SUMMARY-001 citations. Preserve all original prose, requirements, scenarios, checkbox state and non-citation metadata. Do not add exemptions or drift resolutions.",
-        "openspec/changes/issue-5-proposal/tasks.md": "Only add pdac-scope: cited and provider-generated current BR-SUMMARY-001 / FR-SUMMARY-001 citations. Preserve all original prose, requirements, scenarios, checkbox state and non-citation metadata. Do not add exemptions or drift resolutions.",
-        "openspec/changes/issue-5-proposal/specs/observation-summary/spec.md": "Only add pdac-scope: cited and provider-generated current BR-SUMMARY-001 / FR-SUMMARY-001 citations. Preserve all original prose, requirements, scenarios, checkbox state and non-citation metadata. Do not add exemptions or drift resolutions."
+        "src/summary.test.mjs": "Preserve every existing assertion; add coverage only when needed to verify the behavior-preserving private-helper refactor in issue #12."
       }
     }
   }
