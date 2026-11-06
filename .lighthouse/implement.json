@@ -85,11 +85,9 @@
     }
   },
   "12": {
-    "scope": "Deliver only issue #12 after its exact ProductShape prerequisite is approved and applied: extract private summary classification without changing behavior, preserve all nine existing tests and check configuration, and retain only this issue own OpenSpec plan.",
+    "scope": "Controlled owner-authorized citation maintenance on the existing product-backed PR #16 only. Add only current canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and cited-scope declarations to the four named issue #5 documents. The exact-tree guard freezes every other admitted source byte and Git executable mode at a396ea1, and preserves original prose and task state in those four documents. Do not change implementation, tests, product artifacts, workflows, check configuration, own issue #12 plan, or any other file. No product apply, new PR, external mutation or merge is granted. Existing model and framework protections remain mandatory. The supported repository path selector is paired with exhaustive protected inputs, four explicit correction reasons, the exact-tree check and independent provider validation; it is not general implementation authority.",
     "paths": [
-      "src/summary.mjs",
-      "src/summary.test.mjs",
-      "openspec/changes/issue-12-proposal/"
+      "*"
     ],
     "checks": [
       [
@@ -112,24 +110,74 @@
         "node",
         "scripts/lighthouse-guard.mjs",
         "verify"
+      ],
+      [
+        "node",
+        "-e",
+        "const f=require('node:fs'),c=require('node:crypto');let a=[],cit=process.argv.slice(2).flatMap(x=>['<!-- '+x+' -->','**Product citation**: <!-- '+x+' -->']);function w(d=''){for(const n of f.readdirSync(d||'.').sort()){let p=d+n;if(/^(node_modules|\\.git)(\\/|$)|^\\.product\\/(cache|generated)(\\/|$)/.test(p))continue;let s=f.lstatSync(p);if(s.isDirectory())w(p+'/');else{let b=f.readFileSync(p);if(/^openspec\\/changes\\/issue-5-proposal\\/(?:(?:proposal|design|tasks)\\.md|specs\\/observation-summary\\/spec\\.md)$/.test(p))b=Buffer.from(b.toString().split('\\n').filter(l=>l.trim()&&l!=='<!-- pdac-scope: cited -->'&&!cit.includes(l)).join('\\n'));a.push([p,!!(s.mode&73),c.createHash('sha256').update(b).digest('hex')]);}}}w();let h=c.createHash('sha256').update(JSON.stringify(a)).digest('hex');if(process.argv[1]){if(h!==process.argv[1])throw Error('Only canonical citation metadata may change')}else console.log(h);",
+        "297091637dad41b6f151eaee01c4650d9620476b7ce20c82924dce99c0449abb",
+        "pdac:cite id=\"BR-SUMMARY-001\" digest=\"sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4\"",
+        "pdac:cite id=\"FR-SUMMARY-001\" digest=\"sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac\""
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "openspec",
+        "validate",
+        "issue-5-proposal",
+        "--strict",
+        "--no-interactive"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "openspec",
+        "validate",
+        "issue-12-proposal",
+        "--strict",
+        "--no-interactive"
       ]
     ],
     "reviewRequired": false,
     "verification": {
       "paths": [
-        "package.json",
+        ".agents/",
+        ".consumer-hooks/",
+        ".gitattributes",
+        ".github/",
+        ".gitignore",
+        ".husky/",
+        ".lighthouse/",
+        ".product/",
+        "AGENTS.md",
+        "LIGHTHOUSE.md",
+        "README.md",
+        "docs/",
+        "infra/",
+        "lighthouse.json",
+        "openspec/",
         "package-lock.json",
-        "src/summary.test.mjs",
-        "scripts/consumer-preflight.mjs",
-        ".github/workflows/ci.yml",
-        ".lighthouse/github.json",
-        ".lighthouse/implement.json",
-        "docs/consumer-contract.md",
-        "tools/existing-tool.mjs",
-        "scripts/verify-delivery-profile.mjs"
+        "package.json",
+        "scripts/",
+        "src/",
+        "tools/"
       ],
       "corrections": {
-        "src/summary.test.mjs": "Preserve every existing assertion; add coverage only when needed to verify the behavior-preserving private-helper refactor in issue #12."
+        "openspec/changes/issue-5-proposal/proposal.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation.",
+        "openspec/changes/issue-5-proposal/tasks.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation.",
+        "openspec/changes/issue-5-proposal/design.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation.",
+        "openspec/changes/issue-5-proposal/specs/observation-summary/spec.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation."
       }
     }
   }
