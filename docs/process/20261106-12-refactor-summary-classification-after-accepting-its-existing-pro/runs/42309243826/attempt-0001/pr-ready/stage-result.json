@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "runId": "d1256e050639695059c0c9336855e1f94e398b83bc701b9ac9a6c1d6a3dd8c5c",
+  "stage": "integrate",
+  "gate": "done",
+  "status": "blocked",
+  "evidence": [
+    {
+      "id": "github-check:128205579521",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42309025409/job/128205579521",
+      "reason": "Host-authenticated eligible push check repository, App 15368, succeeded for the full accepted head. This satisfies the declared forge check, not every work-item verification requirement."
+    },
+    {
+      "id": "source-contract-inspection",
+      "status": "passed",
+      "source": "/workspace/src/summary.mjs:1-17",
+      "reason": "One private classifier uses exact passed/failed comparisons with unavailable fallback. The sole export returns four counters, initializes total from input length, traverses forward and does not write inputs. Source inspection agrees with BR-SUMMARY-001 and FR-SUMMARY-001; it is not a test execution receipt."
+    },
+    {
+      "id": "owner-current-head-review",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/pull/16#pullrequestreview-5808176775",
+      "reason": "Host supplies APPROVED owner review for the exact accepted head and merge:true authorization. The review reports nine unchanged tests and a 65-case independent contract; those claims are retained as review evidence, not independently authenticated command results."
+    },
+    {
+      "id": "implementation-verification-receipts",
+      "status": "unavailable",
+      "source": "/input/context.json completion.implementationEvidence",
+      "reason": "Host reports unavailable: Not an open repository-owned implementation PR; checks is empty, despite observed PR state open. No failed command is reported. Required independent checks cannot be established from PR narrative or task checkboxes."
+    },
+    {
+      "id": "merge-readiness",
+      "status": "unavailable",
+      "source": "/input/context.json completion.mergeable",
+      "reason": "Host reports mergeable:false against current base without a diagnostic. Strict required-status policy applies. Do not infer a conflict, stale branch, protection failure or a failed check from this boolean."
+    },
+    {
+      "id": "affected-guidance-reconciliation",
+      "status": "pending-review",
+      "source": "/workspace/.lighthouse/implement.json:87-134; /workspace/LIGHTHOUSE.md:8-17; /workspace/openspec/changes/issue-12-proposal/tasks.md:19",
+      "reason": "Candidate policy lists four issue-12 commands and no four-document citation exception, while review history describes eight policy commands plus OpenSpec and authorized citation maintenance. Candidate guidance selects SDLC 0.20.8 and says ProductShape is not adopted, while host execution selects 0.20.10 and OpenSpec guidance treats the product model as canonical. Historical tasks retain a citation blocker reportedly corrected later. Current-policy reconciliation is needed, not unauthorized rewriting of historical artifacts."
+    }
+  ],
+  "missingEvidence": [
+    "A host-authenticated current-policy verification bundle for the accepted candidate, including the nine original tests, required independent contract and whole-source preservation check, provider validation/citation verification and required strict OpenSpec validation. No command receipts were supplied.",
+    "Retained acceptance evidence for the controlled rejected approval/source and runtime-prerequisite cases, actionable blocked prerequisite and authenticated same-PR approval/apply/resume sequence. PR markers and review narratives describe this history but do not independently establish all controls."
+  ],
+  "unavailableChecks": [
+    "completion.implementationEvidence is unavailable with zero checks: Not an open repository-owned implementation PR.",
+    "Merge readiness is unresolved: host reports mergeable:false without a cause against the bound current base."
+  ],
+  "pendingReview": [
+    "Repository maintainer and trusted host must reconcile current policy authority with the older candidate guidance, confirm the exact four-file citation-maintenance exception and applicable verification set, and retain that reconciliation without treating historical task prose as current status."
+  ],
+  "nextAction": "Repository maintainer and trusted host: reconcile current policy and candidate guidance, restore correctly bound implementation and acceptance-control receipts, and diagnose the negative mergeability observation against the live base. Reassess integration before requesting any protected merge; preserve the exact candidate and do not replay product apply.",
+  "output": {
+    "binding": {
+      "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+      "issue": 12,
+      "pr": 16,
+      "head": "156628ea4bbb9c8bec943f741a284b64f861814b",
+      "base": "1575376f759d60cb83546d41ce9b4d40d6e6b04c",
+      "branch": "main",
+      "intent": "41e7bf7633eff6b384f0716b23ac5a11803c390b444c0b88252b96d1c53047e3",
+      "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+      "reviews": "880d5a8a97e59efb80f532ab596d5f84d5d4dd608fc3d752b881bbc0414517af",
+      "prIntent": "d377b58ee24c775fbc9a4675d6891ef394c0404bbc2400db384e2a32c4c7c39c",
+      "files": "e9ab2e07306471c7a0f0baf076b7b5289026b2c5deabb4d9f13e78f416c550b2"
+    },
+    "provenance": {
+      "authority": "Host-supplied identities and authenticated GitHub observations; no independent GitHub or Git identity verification was attempted.",
+      "requestId": "c96ae404ce608daf969ae4492e8646f678a16d08bc02794101bb81615c9a1b50",
+      "dispatchDigest": "5c8697f872f8e6aeadfa0a15c639818ef323d0378a82532ad8fbfe7ffe5c4a2b",
+      "workflowRunId": "42309243826",
+      "observedAt": "2026-11-06T23:04:02.007Z"
+    },
+    "integration": {
+      "deliveryBranch": "lighthouse/implement-12-7794b02e96d8",
+      "targetBranch": "main",
+      "ownerAuthorization": {
+        "merge": true,
+        "approvalId": 5808176775,
+        "owner": "juangcarmona",
+        "head": "156628ea4bbb9c8bec943f741a284b64f861814b"
+      },
+      "action": "withhold merge request pending current-stage evidence reconciliation",
+      "merged": false,
+      "mergeReceipt": null,
+      "allowedMergeMethods": [
+        "merge",
+        "squash",
+        "rebase"
+      ],
+      "protection": "Strict repository check from App 15368; no bypass or branch rewrite authorized by this assessment. Publisher must recheck authority, checks, base and reservation before any eventual merge request."
+    },
+    "acceptanceInspection": {
+      "sourceDefects": [],
+      "qualification": "No actual source defect identified by inspection; runtime verification remains incomplete.",
+      "testCoverage": "src/summary.test.mjs contains nine tests covering empty, mixed, homogeneous, unknown/missing and non-exact statuses, nested-content/identity/order preservation and frozen inputs. Changed-path observations contain no test, dependency, hook, tool or CI modifications. This does not prove historical byte preservation or execution.",
+      "changedPaths": "Sixteen paths comprise one source module, two applied product documents, five Product Change artifacts, four issue-12 plan files and four issue-5 citation documents. Production scope matches the requested helper. The issue-5 metadata is described as separately authorized maintenance in owner reviews; current candidate implementation policy does not contain that exception.",
+      "dependencyOrder": "Product proposal then exact owner approval and pinned-provider apply must precede technical implementation on the same PR. Applied status and historical checkpoint are present, but status alone is not proof of approval authority or execution. Historical dismissed reviews are not reused as current authorization.",
+      "acceptedWarning": "Owner review explicitly discloses nonblocking PRODUCT103, an absent actor path for this bounded technical contract. No new actor, exemption or source correction is inferred; current provider output is unavailable.",
+      "guidance": "Read root AGENTS.md, LIGHTHOUSE.md, lighthouse.json, consumer contract, delivery/implementation profiles, OpenSpec configuration, product guidance, affected plans and canonical requirements. Reported drift is an authority/evidence reconciliation gap, not proof of an unauthorized product edit.",
+      "historicalTaskStatus": "Issue-12 tasks retain the earlier repository citation blocker; later PR reports say it was corrected. Preserve history and obtain fresh receipts rather than silently changing task prose."
+    },
+    "synchronization": {
+      "issue": {
+        "state": "open",
+        "labels": [
+          "pr-ready",
+          "triaged"
+        ]
+      },
+      "pullRequest": {
+        "state": "open",
+        "merged": false,
+        "labels": []
+      },
+      "onPassed": {
+        "add": [],
+        "remove": [],
+        "closeIssue": false
+      },
+      "onBlocked": {
+        "add": [],
+        "remove": [],
+        "closeIssue": false
+      },
+      "pullRequestLabels": "preserve",
+      "reservation": "Host applies agent-working after observation, clears prior execution-failed state and releases reservation on every outcome. These pending host effects are not missing assessment evidence."
+    },
+    "optionalChecks": "Skipped pr-state, epic-triage and continue-post-merge-review jobs are not failed checks or additional integration gates. Router success is not behavioral acceptance evidence.",
+    "laterStages": [
+      {
+        "stage": "post-merge",
+        "check": "ci.yml",
+        "status": "not-performed",
+        "reason": "No merge receipt; configured publisher action only after an actual merge."
+      },
+      {
+        "stage": "review",
+        "check": "retrospective and post-merge acceptance",
+        "status": "not-performed",
+        "reason": "Separate stage entry required; no review publication, issues or permission changes requested."
+      }
+    ],
+    "limitations": "Source remained read-only. No commands, external services or product apply were executed. CodeGraph context was unavailable; source inspection used direct file reads. That tooling limitation is not a failed product check. The trusted host validates this envelope and records terminal completion."
+  }
+}

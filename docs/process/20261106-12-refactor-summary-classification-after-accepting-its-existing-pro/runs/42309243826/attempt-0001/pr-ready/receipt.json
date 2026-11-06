@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "state": "blocked",
+  "sha": null,
+  "acceptedHead": "156628ea4bbb9c8bec943f741a284b64f861814b",
+  "authorization": {
+    "issue": 12,
+    "pr": 16,
+    "head": "156628ea4bbb9c8bec943f741a284b64f861814b",
+    "merge": true,
+    "approval": {
+      "id": 5808176775,
+      "owner": "juangcarmona",
+      "head": "156628ea4bbb9c8bec943f741a284b64f861814b"
+    }
+  },
+  "binding": {
+    "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+    "issue": 12,
+    "pr": 16,
+    "head": "156628ea4bbb9c8bec943f741a284b64f861814b",
+    "base": "1575376f759d60cb83546d41ce9b4d40d6e6b04c",
+    "branch": "main",
+    "intent": "41e7bf7633eff6b384f0716b23ac5a11803c390b444c0b88252b96d1c53047e3",
+    "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+    "reviews": "880d5a8a97e59efb80f532ab596d5f84d5d4dd608fc3d752b881bbc0414517af",
+    "prIntent": "d377b58ee24c775fbc9a4675d6891ef394c0404bbc2400db384e2a32c4c7c39c",
+    "files": "e9ab2e07306471c7a0f0baf076b7b5289026b2c5deabb4d9f13e78f416c550b2"
+  }
+}
