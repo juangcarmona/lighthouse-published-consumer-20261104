@@ -83,5 +83,54 @@
         "src/summary.test.mjs": "Extend both existing exact result assertions with failed and unavailable fields because issue #5 adds those fields. Preserve total/passed expectations and the empty and unknown-status cases; add all-passed, all-failed, mixed, missing-status and input-preservation coverage."
       }
     }
+  },
+  "12": {
+    "scope": "Deliver only issue #12 after its exact ProductShape prerequisite is approved and applied: extract private summary classification without changing behavior, preserve all nine existing tests and check configuration, and retain only this issue own OpenSpec plan.",
+    "paths": [
+      "src/summary.mjs",
+      "src/summary.test.mjs",
+      "openspec/changes/issue-12-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Preserve every existing assertion; add coverage only when needed to verify the behavior-preserving private-helper refactor in issue #12."
+      }
+    }
   }
 }
