@@ -1,5 +1,9 @@
 # Tasks
 
+<!-- pdac-scope: cited -->
+<!-- pdac:cite id="BR-SUMMARY-001" digest="sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4" -->
+<!-- pdac:cite id="FR-SUMMARY-001" digest="sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac" -->
+
 ## 1. Summary behavior
 
 - [x] 1.1 Implement the exact four-field summary and extend tests for empty, unknown, all-passed, all-failed, mixed, missing and strict-status cases; verify with `npm test`.
