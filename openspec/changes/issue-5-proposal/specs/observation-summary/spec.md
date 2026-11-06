@@ -1,5 +1,7 @@
 # Observation Summary
 
+<!-- pdac-scope: cited -->
+
 ## Purpose
 
 Provide consumers with complete classification counts for supplied check observations while preserving the original inventory and its evidence.
@@ -8,6 +10,9 @@ Provide consumers with complete classification counts for supplied check observa
 
 ### Requirement: Exact classification counts
 The summary SHALL return exactly `total`, `passed`, `failed` and `unavailable` counts. Total MUST equal the number of observations. Only an exact string status of `passed` SHALL count as passed and only an exact string status of `failed` SHALL count as failed. Every other or missing status SHALL count as unavailable.
+
+**Product citation**: <!-- pdac:cite id="BR-SUMMARY-001" digest="sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4" -->
+**Product citation**: <!-- pdac:cite id="FR-SUMMARY-001" digest="sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac" -->
 
 #### Scenario: Empty inventory
 - **WHEN** the inventory is empty
@@ -39,6 +44,8 @@ The summary SHALL return exactly `total`, `passed`, `failed` and `unavailable` c
 
 ### Requirement: Preserve supplied evidence
 Summarization MUST leave the supplied inventory order, object identities and object contents unchanged. It SHALL perform no I/O.
+
+**Product citation**: <!-- pdac:cite id="FR-SUMMARY-001" digest="sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac" -->
 
 #### Scenario: Input remains unchanged
 - **WHEN** an inventory containing distinct observation objects and nested metadata is summarized

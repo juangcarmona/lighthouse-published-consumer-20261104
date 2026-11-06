@@ -1,5 +1,9 @@
 # Design
 
+<!-- pdac-scope: cited -->
+<!-- pdac:cite id="BR-SUMMARY-001" digest="sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4" -->
+<!-- pdac:cite id="FR-SUMMARY-001" digest="sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac" -->
+
 ## Context
 
 See proposal.md for motivation. The current pure `summarize(checks)` function returns total and passed counts using an exact status comparison. The inventory contains observation objects; missing status properties are supported. Null inventory entries and malformed non-array inputs are outside this issue's contract.
