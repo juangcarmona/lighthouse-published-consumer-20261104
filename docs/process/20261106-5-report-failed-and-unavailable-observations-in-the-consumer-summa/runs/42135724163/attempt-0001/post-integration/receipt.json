@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "state": "merged",
+  "sha": "9082a4fd087862b1e0692f6ebf323d2c00c66ff4",
+  "acceptedHead": "d9bf44fd4df644bb83475729354be3ecc6192f7c",
+  "authorization": {
+    "issue": 5,
+    "pr": 8,
+    "head": "d9bf44fd4df644bb83475729354be3ecc6192f7c",
+    "merge": false
+  },
+  "binding": {
+    "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+    "issue": 5,
+    "pr": 8,
+    "head": "d9bf44fd4df644bb83475729354be3ecc6192f7c",
+    "base": "9082a4fd087862b1e0692f6ebf323d2c00c66ff4",
+    "branch": "main",
+    "intent": "7c75c68d3e414e01a155a5fe07d70e21cd1d3a781ba4aaf0c2c3471e343bf5f8",
+    "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+    "reviews": "e7a9c4528ddcaae6d7348a8332e7cb769efd4463c0dea11ad3b6c158070849d9",
+    "prIntent": "2fa9ef27ef599ffaa9abba64b55d26ee67cb3651779ee5fb5667dc085681fba1",
+    "files": "2743bb90cd67077a1371dd227a3c41d46ad850a1f7b4d14591f02185db581dbb"
+  },
+  "postMerge": [
+    {
+      "workflow": "ci.yml",
+      "revision": "9082a4fd087862b1e0692f6ebf323d2c00c66ff4",
+      "state": "passed",
+      "status": "passed",
+      "runId": 42134525763,
+      "url": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42134525763"
+    }
+  ]
+}

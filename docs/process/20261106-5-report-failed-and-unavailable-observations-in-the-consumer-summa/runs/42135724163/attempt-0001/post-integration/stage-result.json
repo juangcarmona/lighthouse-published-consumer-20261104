@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "runId": "f5591bef795aa2a8b4091c4ea626217529d9e02dfde9ca0576fe00fbea872d71",
+  "stage": "review",
+  "gate": null,
+  "status": "passed",
+  "evidence": [
+    {
+      "id": "source-and-acceptance-review",
+      "status": "passed",
+      "source": "/workspace/src/summary.mjs",
+      "reason": "Lines 1–13 implement exclusive exact-status counts with a fresh four-field result, no input writes, dependencies or I/O. Nine tests in src/summary.test.mjs retain empty/unknown assertions and cover homogeneous, mixed, missing, strict-status, snapshot, identity, order and frozen inputs. All six host-supplied changed paths stay within the accepted scope."
+    },
+    {
+      "id": "guidance-review",
+      "status": "passed",
+      "source": "/workspace/docs/consumer-contract.md",
+      "reason": "Compared AGENTS.md, LIGHTHOUSE.md, consumer contract, package.json, ci.yml and all four issue-specific OpenSpec files. No affected stale or conflicting repository guidance established. Provider scaffolds are explicitly unadopted authorities; host-specific completion transport is not drift."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:1",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Host-verified npm ci --ignore-scripts receipt at accepted head; exit 0. Audit warnings retained separately, not treated as a failed command."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:2",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Host-verified npm run verify receipt: nine tests passed, none failed or skipped. Test adequacy was also inspected rather than inferred from green CI."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:3",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Installed lighthouse verify passed at accepted head."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:4",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Repository guard verification passed at accepted head."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:5",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Strict validation of actual issue-5-proposal passed. Host reports verification inputs unchanged at merged revision."
+    },
+    {
+      "id": "github-check:127612096629",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42132433723/job/127612096629",
+      "reason": "Authenticated repository check from App 15368 passed at accepted head d9bf44fd4df644bb83475729354be3ecc6192f7c."
+    },
+    {
+      "id": "integration:42133939812:1",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/blob/2397401d746bf509483f6832474390ab76bde6ed/docs/process/20261106-5-report-failed-and-unavailable-observations-in-the-consumer-summa/runs/42133939812/attempt-0001/post-integration/report.md",
+      "reason": "Host-verified receipt records explicit owner merge:true dispatch for issue 5, PR 8 and exact accepted head, and actual merged revision 9082a4fd087862b1e0692f6ebf323d2c00c66ff4. This is merge evidence independent of an assessment."
+    },
+    {
+      "id": "github-check:127619183398",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42134525763/job/127619183398",
+      "reason": "Authenticated required repository check from App 15368 passed at merged/current checked revision 9082a4fd087862b1e0692f6ebf323d2c00c66ff4; host postMerge also identifies ci.yml run 42134525763 as passed."
+    },
+    {
+      "id": "github-check:127619352843",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42134525763/job/127619352843",
+      "reason": "Post-merge continuation passed; subsequent review dispatch includes completion recovery provenance."
+    },
+    {
+      "id": "finalization-policy-review",
+      "status": "passed",
+      "source": "/input/context.json",
+      "reason": "Host finalization policy observes issue open with pr-ready/triaged and PR closed/merged with no labels. Passed transition removes lifecycle labels, closes issue, preserves PR labels and releases reservation after validation; not required to have happened already."
+    }
+  ],
+  "missingEvidence": [],
+  "unavailableChecks": [],
+  "pendingReview": [],
+  "nextAction": "Trusted publisher: revalidate current authority, checks and reservation, publish this review on the adopted evidence branch, apply the declared passed finalization and close issue #5; no new merge or stage is requested.",
+  "output": {
+    "summary": "Accepted post-integration review for issue #5 and PR #8. No source defect or unresolved current-stage acceptance requirement established.",
+    "identity": {
+      "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+      "issue": 5,
+      "pr": 8,
+      "acceptedHead": "d9bf44fd4df644bb83475729354be3ecc6192f7c",
+      "integratedRevision": "9082a4fd087862b1e0692f6ebf323d2c00c66ff4",
+      "intent": "7c75c68d3e414e01a155a5fe07d70e21cd1d3a781ba4aaf0c2c3471e343bf5f8",
+      "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+      "dispatchRequestId": "525aa51342b941de3f9643bdc68469fda05baca81831739e96ff8f10d4913eb1",
+      "provenance": "Host-supplied authenticated observations; no independent API or git authentication performed by this engine. Current review authorization has merge:false; only the retained integration dispatch has merge:true."
+    },
+    "continuity": {
+      "issue": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/issues/5",
+      "plan": "openspec/changes/issue-5-proposal/",
+      "candidate": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/pull/8",
+      "technicalReview": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/pull/8#pullrequestreview-5793795110",
+      "integrationEvidence": "integration:42133939812:1",
+      "integrationRecordSha256": "7d5d7b1e686d1c417674fd80e476984ac3155ee0f70f9248874d1a3e302fc0f2",
+      "postMergeRun": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42134525763",
+      "publication": "Current review publication and finalization remain subsequent trusted-host actions. No human Product Change approval is inferred from the technical review; no additional human acceptance gate is declared for this technical consumer."
+    },
+    "findings": [
+      {
+        "id": "R1",
+        "classification": "fixed",
+        "kind": "historical evidence gap",
+        "owner": "Lighthouse delivery host maintainers",
+        "followUpReference": "github-check:127619183398",
+        "decision": "The integration receipt initially recorded ci.yml missing, not failed. Exact merged-revision CI is now authenticated as passed, resolving the current acceptance gap without rewriting history."
+      },
+      {
+        "id": "R2",
+        "classification": "deferred",
+        "kind": "process improvement",
+        "owner": "Lighthouse delivery host maintainers",
+        "followUpReference": "review:R2; maintenance runs 42132306103 and 42135179053",
+        "decision": "PR technical-review text reports recovery of an unsent candidate CI request; current dispatch carries completionRecovery after successful post-merge continuation. Delivery continuity required recovery. Underlying cause and recurrence across work items are unknown. Record a separately reviewed recovery regression candidate, not a source defect or new delivery gate."
+      },
+      {
+        "id": "R3",
+        "classification": "accepted",
+        "kind": "reporting process gap",
+        "owner": "Lighthouse integration report publisher maintainers",
+        "followUpReference": "review:R3; integration:42133939812:1 report",
+        "decision": "The retained report says Outcome: merged but includes earlier prose saying no merge is established yet. The authenticated receipt resolves actual state. Keep the historical artifact intact and propose a separately reviewed report-state consistency test."
+      },
+      {
+        "id": "R4",
+        "classification": "deferred",
+        "kind": "dependency warning",
+        "owner": "Consumer repository maintainer",
+        "followUpReference": "review:R4; implementation command receipt :1",
+        "decision": "npm ci reported four low-severity vulnerabilities while exiting successfully. Packages, exploitability and baseline origin are unknown; no source regression established. Dependency triage belongs to separately scoped maintenance, not an automatic force fix or an invented acceptance gate."
+      }
+    ],
+    "historicalLimits": [
+      {
+        "item": "priorPlanningReview",
+        "status": "unavailable",
+        "reason": "Host supplies null; no independent pre-implementation planning-review receipt is claimed. Issue-specific plan, exact-head technical review and independent command/CI evidence are present; a separate planning review is not an explicit current-stage requirement."
+      },
+      {
+        "item": "optional skipped router/maintenance jobs",
+        "status": "unavailable",
+        "reason": "Host observations retain skipped epic-triage, pr-state, report and report-stalled jobs. These are neither failed checks nor mandatory product acceptance checks."
+      },
+      {
+        "item": "historical post-merge CI at integration receipt creation",
+        "status": "unavailable",
+        "reason": "Missing in original receipt; subsequently resolved by run 42134525763. No failed required check is present in current observations."
+      }
+    ],
+    "finalization": {
+      "executor": "trusted publisher after current-stage validation",
+      "observedIssue": {
+        "state": "open",
+        "labels": [
+          "pr-ready",
+          "triaged"
+        ]
+      },
+      "observedPullRequest": {
+        "state": "closed",
+        "merged": true,
+        "labels": []
+      },
+      "intendedIssueTransition": {
+        "add": [],
+        "remove": [
+          "waiting-review",
+          "ready",
+          "pr-draft",
+          "pr-ready",
+          "integrate",
+          "review"
+        ],
+        "closeIssue": true,
+        "retain": [
+          "triaged"
+        ]
+      },
+      "pullRequestLabels": "preserve",
+      "reservation": "Host cleanup releases agent-working for every outcome.",
+      "performedByEngine": false
+    },
+    "retrospective": "## What went well\n- The six changed paths match issue #5. Exact classification and purity are directly supported by src/summary.mjs:1–13 and nine meaningful assertions in src/summary.test.mjs:4–59. No source defect or affected guidance drift was established.\n- Five retained command receipts, exact-head independent CI, an owner-authorized actual merge receipt and merged-revision CI provide separate delivery evidence. Owner: consumer maintainer and delivery host maintainers.\n\n## What went wrong\n- Continuation needed recovery: the PR technical review reports an unsent candidate CI request recovered by maintenance 42132306103; this review dispatch carries completionRecovery from 42135179053 despite successful continuation job 127619352843. Root cause is unknown; these observations concern one work item and do not establish recurrence. Owner: delivery host maintainers; reference R2.\n- The retained integration report mixes a confirmed merged outcome with pre-merge assessment wording. Receipt integrity resolves the state, but prose is ambiguous. Owner: integration report publisher maintainers; reference R3.\n- Installation emitted four low-severity dependency warnings; affected packages and baseline origin were not established. Owner: consumer maintainer; reference R4.\n\n## Start doing\n- Retain explicit assessment, merge receipt and current acceptance sections so historical missing CI cannot be confused with failed CI. Keep the original missing observation alongside its later resolution (R1).\n- Triage the retained dependency warning in separately scoped maintenance; do not infer a new source defect or run an automatic breaking fix (R4).\n\n## Stop doing\n- Stop presenting pre-merge assessment prose as the current merge state (R3). Do not equate a green job with behavior proof or retries/recovery of this issue with recurrence across issues.\n\n## Improvement candidates\n- **Recovery continuity (R2)** — Owner: delivery host maintainers. Observed failure: recovery was needed to progress delivery. Evidence: technical review 5793795110 and current completionRecovery provenance. Smallest useful guard: an exact issue/PR/head-bound, idempotent continuation regression. In a separately authorized test fixture, first reproduce an unsent candidate CI intent or successful post-merge CI without a consumed review dispatch; demonstrate the missing continuation, then verify recovery emits one correctly bound continuation without republishing the PR or merging again. Root-cause diagnosis and RED/GREEN proof remain future work; no guard was implemented here.\n- **Report-state consistency (R3)** — Owner: integration report publisher maintainers. Observed failure: retained integration report simultaneously says merged and no merge established. Smallest useful guard: a renderer fixture separating historical assessment text from authenticated outcome. Reproduce using the retained merged receipt and pre-merge assessment; first show contradictory current-state prose, then verify the corrected renderer labels it historical while preserving merge SHA and then-missing CI. Provider-owned changes require their own review and regression proof.\n- No product or architecture redesign is supported by this small delivery. No attention-time or cost measurements, cross-issue recurrence, new permissions or follow-up issues are claimed."
+  }
+}
