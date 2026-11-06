@@ -69,7 +69,7 @@ steps:
     with:
       node-version: 24
   - name: Install the published Lighthouse harness
-    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.7
+    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.8
   - name: Load the authorized issue context
     uses: actions/download-artifact@v8
     with:
@@ -118,7 +118,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.7
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.8
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -163,7 +163,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.7
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.8
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -187,42 +187,7 @@ jobs:
         if: needs.agent.result == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
-          LIGHTHOUSE_ACCEPTANCE_LOST_ACK: ${{ vars.LIGHTHOUSE_ACCEPTANCE_LOST_ACK }}
-        run: |
-          if [ "$LIGHTHOUSE_ACCEPTANCE_LOST_ACK" = "final-review-close" ] && [ "$LIGHTHOUSE_ISSUE" = "5" ]; then
-            cat > "$RUNNER_TEMP/acceptance-lost-ack.mjs" <<'FAULT'
-          // Controlled consumer acceptance fault: commit final closure, then lose only its acknowledgement.
-          import assert from 'node:assert/strict';
-          import { readFile, writeFile } from 'node:fs/promises';
-          import { join } from 'node:path';
-          const env=process.env;
-          const repository='juangcarmona/lighthouse-published-consumer-20261104';
-          assert.equal(env.GITHUB_REPOSITORY,repository);
-          assert.equal(env.LIGHTHOUSE_ACCEPTANCE_LOST_ACK,'final-review-close');
-          assert.equal(process.argv.at(-1),'publish');
-          assert.match(process.argv.at(-2),/(?:^|\/)completion-actions\.mjs$/);
-          const dir=env.LIGHTHOUSE_RUN_DIR ?? join(env.RUNNER_TEMP,`lighthouse-${env.GITHUB_RUN_ID}-${env.GITHUB_RUN_ATTEMPT}`);
-          const request=JSON.parse(await readFile(join(dir,'request.json'),'utf8'));
-          assert.equal(request.stage,'review');
-          assert.equal(request.issue,5);
-          assert.equal(String(request.workflowRunId),env.GITHUB_RUN_ID);
-          const target=`https://api.github.com/repos/${repository}/issues/${request.issue}`;
-          const realFetch=globalThis.fetch;
-          let committed=false;
-          globalThis.fetch=async(url,options)=>{
-            const response=await realFetch(url,options);
-            if(!committed && String(url)===target && options?.method==='PATCH' && options.body===JSON.stringify({state:'closed',state_reason:'completed'}) && response.ok){
-              committed=true;
-              await writeFile(join(dir,'acceptance-lost-ack.json'),JSON.stringify({kind:'Intentional loss of final-review issue-close acknowledgement after confirmed HTTP success',repository,issue:request.issue,run:env.GITHUB_RUN_ID,status:response.status})+'\n');
-              throw Error('Controlled #216 fault: final issue closure committed; acknowledgement deliberately lost');
-            }
-            return response;
-          };
-          FAULT
-            NODE_OPTIONS="--import=$RUNNER_TEMP/acceptance-lost-ack.mjs" node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/completion-actions.mjs publish
-          else
-            node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/completion-actions.mjs publish
-          fi
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/completion-actions.mjs publish
       - name: Preserve merge and publication receipts
         if: always()
         uses: actions/upload-artifact@v7
@@ -231,7 +196,6 @@ jobs:
           path: |
             ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/integration-receipt.json
             ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/publication-receipt.json
-            ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/acceptance-lost-ack.json
           if-no-files-found: warn
           retention-days: 30
       - name: Release the issue reservation
