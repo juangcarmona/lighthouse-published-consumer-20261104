@@ -3,7 +3,7 @@
   "schemaVersion": 1,
   "package": {
     "name": "@juangcarmona/lighthouse",
-    "version": "0.12.42"
+    "version": "0.12.43"
   },
   "baseline": "0.1.0",
   "capabilities": {
@@ -35,10 +35,10 @@
     "harness": "1",
     "sdlc": "1"
   },
-  "lastAppliedMigration": "upgrade-0.12.42",
+  "lastAppliedMigration": "upgrade-0.12.43",
   "files": {
     "LIGHTHOUSE.md": {
-      "hash": "631c265fbd7be18de1917250fed197929933c202e5f9fa4670d263899cd5bebd",
+      "hash": "2f3e6c1472d54fa77e9a129826a6bae9d92fcc22c52c709ceae77748f644ec9c",
       "scope": "harness"
     },
     "scripts/lighthouse-guard.mjs": {
@@ -62,11 +62,11 @@
       "scope": "harness"
     },
     ".lighthouse/sdlc.json": {
-      "hash": "c668c19fc88683395a80767ecf9585286a7fdab4ea3881b2e49d56623707f729",
+      "hash": "ecd4fb0da3583fdf1d9dee536d09373f2d244902e1932fb3739074a86b1a9b02",
       "scope": "sdlc"
     },
     ".lighthouse/commands.json": {
-      "hash": "ac4ad2cea4fefc609eda340bef8d520aabc36206b1633c94cb9e9a4bab1dfb71",
+      "hash": "a51b959d5edd50fec8d73c9f9ab6bbb7b892baab860eea5c0fbbc66fc45de75c",
       "scope": "sdlc"
     }
   }
