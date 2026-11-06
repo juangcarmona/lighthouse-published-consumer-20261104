@@ -31,6 +31,8 @@ runs-on: [self-hosted, linux, lighthouse-workflow]
 runs-on-slim: ubuntu-24.04
 timeout-minutes: 55
 env:
+  # Fixture-only prerequisite failure; remove after acceptance.
+  LIGHTHOUSE_ENGINE_CONFIG: ${{ vars.LIGHTHOUSE_ACCEPTANCE_MISSING_RUNTIME == 'true' && '/home/juan/.local/share/lighthouse-runtime/home-published-consumer/216-missing-runtime-engine.json' || '/home/juan/.local/share/lighthouse-runtime/engine.json' }}
   LIGHTHOUSE_RECOVERY_ENABLED: ${{ vars.LIGHTHOUSE_RECOVERY_ENABLED }}
   LIGHTHOUSE_MAINTENANCE_ISSUES: ${{ vars.LIGHTHOUSE_MAINTENANCE_ISSUES }}
   LIGHTHOUSE_EPIC_CAPACITY: ${{ vars.LIGHTHOUSE_EPIC_CAPACITY }}
