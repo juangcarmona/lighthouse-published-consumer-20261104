@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "runId": "3c4f4bcd3600995358a8645280f234f1861f9cc92a4fd03f303d47888b65b897",
+  "stage": "integrate",
+  "gate": "done",
+  "status": "passed",
+  "evidence": [
+    {
+      "id": "github-check:127612096629",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42132433723/job/127612096629",
+      "reason": "Required repository check from App 15368 succeeded on the exact accepted head; host identifies the push run as eligible."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:1",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Host-verified npm ci --ignore-scripts exited zero. Four low-severity audit findings were reported; installation did not fail."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:2",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Host-verified npm run verify exited zero with nine tests passed and none failed or skipped. Source and assertions were also inspected against the issue, rather than treating execution as independent proof of intent."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:3",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Installed Lighthouse verification passed for manifest, boundaries and managed projection."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:4",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Repository guard verification exited zero."
+    },
+    {
+      "id": "implementation:42127037171:1:e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891:5",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42127037171/attempts/1",
+      "reason": "Strict noninteractive OpenSpec validation passed for the real issue-5-proposal change."
+    },
+    {
+      "id": "acceptance-source-inspection",
+      "status": "passed",
+      "source": "/workspace/src/summary.mjs:1-13; /workspace/src/summary.test.mjs:4-59",
+      "reason": "Exact four-field result, mutually exclusive exact-status counts, empty behavior, unknown/missing fallback and purity match issue #5. Both original assertions remain with extended fields; additional tests cover homogeneous, mixed, strict-status, snapshot, identity/order and frozen-input behavior."
+    },
+    {
+      "id": "scope-and-authority",
+      "status": "passed",
+      "source": "/workspace/docs/consumer-contract.md:3-5; /workspace/lighthouse.json:11-14; /input/context.json completion.files",
+      "reason": "All six changed paths are the two allowed source/test files and four issue-specific OpenSpec files. Retained provider scaffolds are explicitly not adopted authorities; guidance, hooks, checks, tools and provider files remain outside the changed list."
+    },
+    {
+      "id": "exact-head-technical-review",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/pull/8#pullrequestreview-5793795110",
+      "reason": "Host-supplied APPROVED technical review binds the accepted head. This is delegated technical approval, not human Product Change approval or post-integration acceptance; configured required approvals are zero."
+    }
+  ],
+  "missingEvidence": [],
+  "unavailableChecks": [],
+  "pendingReview": [],
+  "nextAction": "Trusted publisher: recheck current owner authority, accepted head/base, required GitHub checks and reservation, then request the explicitly authorized merge subject to GitHub rules; retain its actual outcome and request ci.yml after a successful merge. Post-integration review requires its own entry.",
+  "output": {
+    "assessment": "Ready for the authorized merge request; no merge has been performed or established by this assessment.",
+    "binding": {
+      "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+      "issue": 5,
+      "pr": 8,
+      "head": "d9bf44fd4df644bb83475729354be3ecc6192f7c",
+      "base": "1de8acd14d0d4c7c3efa2aa2a9fc73287f0d03a9",
+      "branch": "main",
+      "intent": "7c75c68d3e414e01a155a5fe07d70e21cd1d3a781ba4aaf0c2c3471e343bf5f8",
+      "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+      "reviews": "e7a9c4528ddcaae6d7348a8332e7cb769efd4463c0dea11ad3b6c158070849d9",
+      "prIntent": "2fa9ef27ef599ffaa9abba64b55d26ee67cb3651779ee5fb5667dc085681fba1",
+      "files": "2743bb90cd67077a1371dd227a3c41d46ad850a1f7b4d14591f02185db581dbb"
+    },
+    "provenance": {
+      "authority": "Host-supplied authenticated completion context; no independent API or git identity verification was attempted.",
+      "dispatchRequestId": "a396f67ef07e63e173c4c1b68c6c09157a380edf1bb41c81e6cb134f1b78eaaf",
+      "dispatchDigest": "f87c4e672f5b8d080dcc7e5826a2daa27c68bbbec99389ca95d043af9511cc50",
+      "authorization": {
+        "issue": 5,
+        "pr": 8,
+        "head": "d9bf44fd4df644bb83475729354be3ecc6192f7c",
+        "merge": true
+      },
+      "implementationTree": "dd21055f085371350c6b538a044fbfbbddbf9990",
+      "implementationArtifactSha256": "e25c7944d43e8b4b08da4b6cb4cf485de74763088edab75a7f9a3b96538cd891"
+    },
+    "dependencyOrder": "No stacked or external dependency is declared. Issue, issue-specific plan, published candidate, host command receipts, required native CI and exact-head technical review are linked. Integration precedes post-merge CI and separately entered acceptance review.",
+    "policyAssessment": {
+      "requiredCheck": "repository / App 15368 passed on accepted head, matching .lighthouse/github.json and host policy.",
+      "mergeRules": "Strict required checks, PR-only changes, deletion and non-fast-forward protections remain enforced by GitHub. Allowed merge methods are merge, squash and rebase; publisher selects a supported method without bypassing protection.",
+      "observedState": "PR open, unmerged and mergeable; current base equals supplied accepted base. Source branch name is not supplied and is not independently asserted.",
+      "authorityException": "docs/product/README.md describes human Product Change approval, but docs/consumer-contract.md explicitly declares these scaffolds unadopted and lighthouse.json sets both provider integrations to null. This technical summary change does not edit product definitions. No new exception or human approval is inferred."
+    },
+    "synchronizationPlan": {
+      "issue": "Observed open with execution-failed, pr-ready and triaged. Passed/blocked finalization adds and removes no labels and does not close the issue.",
+      "pullRequest": "Observed open with no labels; preserve PR labels.",
+      "reservation": "Host adds agent-working and clears the previously observed execution-failed state after observation, then releases the reservation for every outcome. These future host actions are not prerequisites already claimed complete.",
+      "owner": "trusted publisher"
+    },
+    "findings": [
+      {
+        "kind": "source",
+        "summary": "No source defect identified within the supplied observation-object contract. Null inventory entries and malformed non-array inputs are explicitly outside the issue-specific design; no arbitrary-input validation requirement is invented.",
+        "source": "src/summary.mjs; openspec/changes/issue-5-proposal/design.md:5-11"
+      },
+      {
+        "kind": "dependency-observation",
+        "summary": "Install receipt reports four low-severity vulnerabilities without advisory detail. This is not a failed check or evidence that this change introduced them; no dependency files changed. No exploit verification or dependency remediation was attempted.",
+        "owner": "repository dependency maintainer"
+      },
+      {
+        "kind": "process-history",
+        "summary": "The technical review reports recovery of one unsent CI request through maintenance. Current eligible CI is passed. Underlying cause is not established, and retries for this issue do not demonstrate recurrence across issues.",
+        "owner": "workflow maintainer"
+      }
+    ],
+    "optionalChecks": [
+      {
+        "id": "github-check:127613046497",
+        "name": "epic-triage",
+        "status": "unavailable",
+        "reason": "Skipped, not a required integration or work-item check."
+      },
+      {
+        "id": "github-check:127613045957",
+        "name": "pr-state",
+        "status": "unavailable",
+        "reason": "Skipped, not a required integration or work-item check."
+      },
+      {
+        "id": "github-check:127612284131",
+        "name": "continue-post-merge-review",
+        "status": "unavailable",
+        "reason": "Skipped before merge; does not prove failure or post-merge acceptance."
+      }
+    ],
+    "laterStageEvidence": [
+      {
+        "name": "merge receipt",
+        "stage": "publisher finalization",
+        "status": "not-performed",
+        "owner": "trusted publisher",
+        "reason": "Host reports merged false and no merge receipt; priorIntegration is null."
+      },
+      {
+        "name": "post-merge ci.yml",
+        "stage": "review",
+        "status": "not-performed",
+        "owner": "trusted publisher",
+        "reason": "Configured post-merge workflow; no postMerge evidence supplied."
+      },
+      {
+        "name": "accepted post-integration review",
+        "stage": "review",
+        "status": "not-performed",
+        "owner": "owner/review worker",
+        "reason": "Requires its own stage entry and evidence; current assessment does not complete the overall delivery."
+      }
+    ]
+  }
+}
