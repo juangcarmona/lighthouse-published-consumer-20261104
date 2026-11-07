@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "indexId": "evidence-index",
+  "runId": "67e3f6ed11cc30fdfeab7530c2e443f59279d4ccc685d157808b3fef9a375a7f",
+  "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+  "revision": "ad3c32f4b18c16a33db7fd3ea511b16a2aefcde2",
+  "records": [
+    {
+      "id": "completion:67e3f6ed11cc30fdfeab7530c2e443f59279d4ccc685d157808b3fef9a375a7f",
+      "path": "evidence-record.json",
+      "sha256": "92e4f0fcb8c546ed39135e17bfd27c840711143e44476e98c9394b2adf2f9995",
+      "kind": "stage-result",
+      "status": "pending-review",
+      "subject": {
+        "type": "issue",
+        "id": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/issues/34"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "subject": {
+        "type": "issue",
+        "id": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/issues/34"
+      },
+      "status": "incomplete",
+      "evidenceIds": [
+        "completion:67e3f6ed11cc30fdfeab7530c2e443f59279d4ccc685d157808b3fef9a375a7f"
+      ],
+      "nextAction": "Collect or resolve evidence for issue:https://github.com/juangcarmona/lighthouse-published-consumer-20261104/issues/34."
+    }
+  ]
+}
