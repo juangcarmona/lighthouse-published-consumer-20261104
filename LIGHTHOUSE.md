@@ -5,7 +5,7 @@
 - Baseline: `0.1.0`
 - Product: `Published delivery consumer`
 - Profiles: none
-- SDLC package: `@juangcarmona/lighthouse-sdlc@0.21.5`
+- SDLC package: `@juangcarmona/lighthouse-sdlc@0.21.7`
 - ProductShape: not adopted
 - ArcShape: not adopted
 - Public site: `enabled`
