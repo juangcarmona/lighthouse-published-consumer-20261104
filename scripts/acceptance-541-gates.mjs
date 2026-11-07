@@ -18,7 +18,14 @@ export async function waitForAcceptanceGate(phase, request = null, nativeFetch =
     throw Error('Acceptance comments exceed bound');
   };
   const prior = await comments();
-  if (phase === 'before-preparation' && prior.some(comment => comment.user?.login === 'github-actions[bot]' && comment.user.type === 'Bot' && comment.body.includes('<!-- lighthouse-dispatch:'))) return;
+  if (phase === 'before-preparation' && prior.some(comment => {
+    if (comment.user?.login !== 'github-actions[bot]' || comment.user.type !== 'Bot') return false;
+    const matches = [...comment.body.matchAll(/<!-- lighthouse-dispatch:(\{[^\n]*\}) -->/g)];
+    return matches.some(match => {
+      try { const receipt = JSON.parse(match[1]); return receipt.stage === 'review' && String(receipt.eventRunId) === event.inputs.after_run; }
+      catch { return false; }
+    });
+  })) return;
   const revision = (await api('commits/main')).sha;
   const observation = {schemaVersion:1,fixture:'541',phase,repository:env.GITHUB_REPOSITORY,issue:59,run:env.GITHUB_RUN_ID,routerRevision:env.GITHUB_SHA,currentRevision:revision,ci:event.inputs.after_run,...(request ? {requestComment:request.inputs['dispatch-request'],ref:request.ref} : {})};
   const marker = `<!-- lighthouse-541-gate:${JSON.stringify(observation)} -->`;
