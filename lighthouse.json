@@ -15,7 +15,7 @@
   "packages": {
     "sdlc": {
       "name": "@juangcarmona/lighthouse-sdlc",
-      "version": "0.20.8"
+      "version": "0.20.13"
     }
   },
   "managed": [

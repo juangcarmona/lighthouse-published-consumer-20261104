@@ -85,11 +85,9 @@
     }
   },
   "12": {
-    "scope": "Deliver only issue #12 after its exact ProductShape prerequisite is approved and applied: extract private summary classification without changing behavior, preserve all nine existing tests and check configuration, and retain only this issue own OpenSpec plan.",
+    "scope": "Verification-only correction of the existing product-backed PR #16. Preserve all application, tests, accepted product intent, OpenSpec plans and adopter customizations. The trusted host may include only authenticated nonconflicting changes from the owner-admitted default branch before execution, then publish the independently checked tree with source and base as parents. No model file changes, new ProductShape apply, new PR or merge are authorized during this correction. All verification inputs remain frozen after trusted preparation; approval of the resulting exact head is separate.",
     "paths": [
-      "src/summary.mjs",
-      "src/summary.test.mjs",
-      "openspec/changes/issue-12-proposal/"
+      "src/"
     ],
     "checks": [
       [
@@ -112,25 +110,71 @@
         "node",
         "scripts/lighthouse-guard.mjs",
         "verify"
+      ],
+      [
+        "node",
+        "-e",
+        "const f=require('node:fs'),c=require('node:crypto'),x=new Set(process.argv.slice(2).flatMap(JSON.parse));let a=[];function w(d=''){for(const n of f.readdirSync(d||'.').sort()){let p=d+n;if(x.has(p)||/^(node_modules|\\.git)(\\/|$)|^\\.product\\/(cache|generated)(\\/|$)/.test(p))continue;let s=f.lstatSync(p);if(s.isDirectory())w(p+'/');else a.push([p,!!(s.mode&73),c.createHash('sha256').update(f.readFileSync(p)).digest('hex')]);}}w();let h=c.createHash('sha256').update(JSON.stringify(a)).digest('hex');if(process.argv[1]){if(h!==process.argv[1])throw Error('Admitted application, tests, product, plans or customizations changed')}else console.log(h);",
+        "97ba6b60412888b14d9ec97013360c37658f6690559f0a51104ecd96211cb915",
+        "[\".github/workflows/lighthouse-sdlc-apply-product-change.lock.yml\",\".github/workflows/lighthouse-sdlc-apply-product-change.md\",\".github/workflows/lighthouse-sdlc-apply-review.lock.yml\",\".github/workflows/lighthouse-sdlc-apply-review.md\",\".github/workflows/lighthouse-sdlc-implement.lock.yml\",\".github/workflows/lighthouse-sdlc-implement.md\",\".github/workflows/lighthouse-sdlc-integrate.lock.yml\",\".github/workflows/lighthouse-sdlc-integrate.md\",\".github/workflows/lighthouse-sdlc-product-change.lock.yml\",\".github/workflows/lighthouse-sdlc-product-change.md\",\".github/workflows/lighthouse-sdlc-propose.lock.yml\",\".github/workflows/lighthouse-sdlc-propose.md\",\".github/workflows/lighthouse-sdlc-refine.lock.yml\",\".github/workflows/lighthouse-sdlc-refine.md\",\".github/workflows/lighthouse-sdlc-review.lock.yml\",\".github/workflows/lighthouse-sdlc-review.md\",\".github/workflows/lighthouse-sdlc-router.yml\"]",
+        "[\".github/workflows/lighthouse-sdlc-triage.lock.yml\",\".github/workflows/lighthouse-sdlc-triage.md\",\".github/workflows/lighthouse-worker-maintenance.yml\",\".lighthouse/commands.json\",\".lighthouse/implement.json\",\".lighthouse/sdlc.json\",\".lighthouse/upgrade.json\",\"LIGHTHOUSE.md\",\"lighthouse.json\",\"package-lock.json\",\"package.json\",\"scripts/verify-delivery-profile.mjs\"]"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "openspec",
+        "validate",
+        "issue-5-proposal",
+        "--strict",
+        "--no-interactive"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "openspec",
+        "validate",
+        "issue-12-proposal",
+        "--strict",
+        "--no-interactive"
       ]
     ],
     "reviewRequired": false,
     "verification": {
       "paths": [
-        "package.json",
+        ".agents/",
+        ".consumer-hooks/",
+        ".gitattributes",
+        ".github/",
+        ".gitignore",
+        ".husky/",
+        ".lighthouse/",
+        ".product/",
+        "AGENTS.md",
+        "LIGHTHOUSE.md",
+        "README.md",
+        "docs/",
+        "infra/",
+        "lighthouse.json",
+        "openspec/",
         "package-lock.json",
-        "src/summary.test.mjs",
-        "scripts/consumer-preflight.mjs",
-        ".github/workflows/ci.yml",
-        ".lighthouse/github.json",
-        ".lighthouse/implement.json",
-        "docs/consumer-contract.md",
-        "tools/existing-tool.mjs",
-        "scripts/verify-delivery-profile.mjs"
+        "package.json",
+        "scripts/",
+        "src/",
+        "tools/"
       ],
-      "corrections": {
-        "src/summary.test.mjs": "Preserve every existing assertion; add coverage only when needed to verify the behavior-preserving private-helper refactor in issue #12."
-      }
+      "corrections": {},
+      "synchronizeBase": true
     }
   }
 }
