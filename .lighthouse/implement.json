@@ -176,5 +176,65 @@
       "corrections": {},
       "synchronizeBase": true
     }
+  },
+  "34": {
+    "scope": "Deliver only issue #34: refactor the classifier without changing BR-SUMMARY-001 or FR-SUMMARY-001; add the requested classification tests and this issue OpenSpec plan. Preserve accepted models, prior plans, tools, hooks, workflow/check policy and customizations. No ProductShape apply or merge is authorized by implementation.",
+    "paths": [
+      "src/summary.mjs",
+      "src/summary.test.mjs",
+      "openspec/changes/issue-34-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Add prototype-key and boxed-string coverage requested by issue #34, including frozen observations. Preserve every existing assertion."
+      }
+    }
   }
 }
