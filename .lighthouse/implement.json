@@ -237,5 +237,65 @@
       },
       "synchronizeBase": true
     }
+  },
+  "38": {
+    "scope": "Deliver only issue #38: separate primitive classification from observation access without changing BR-SUMMARY-001 or FR-SUMMARY-001; preserve every existing assertion, add the requested read-once accessor/Proxy and primitive coverage and this issue own OpenSpec plan. Preserve accepted models, previous plans, tools, hooks, workflow/check policy and customizations. Implementation does not authorize ProductShape apply or merge.",
+    "paths": [
+      "src/summary.mjs",
+      "src/summary.test.mjs",
+      "openspec/changes/issue-38-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Add the accessor/Proxy read-once and symbol/bigint classification tests requested by issue #38. Preserve every existing assertion and all previously covered statuses."
+      }
+    }
   }
 }
