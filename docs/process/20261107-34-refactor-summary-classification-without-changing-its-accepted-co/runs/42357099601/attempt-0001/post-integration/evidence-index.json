@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "indexId": "evidence-index",
+  "runId": "0d307e2f7c8a8c71122f9e5735f456791aee0ceab55b4761e11b92dfffd1bfc5",
+  "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+  "revision": "ad3c32f4b18c16a33db7fd3ea511b16a2aefcde2",
+  "records": [
+    {
+      "id": "completion:0d307e2f7c8a8c71122f9e5735f456791aee0ceab55b4761e11b92dfffd1bfc5",
+      "path": "evidence-record.json",
+      "sha256": "14edce6e8f0b6245c541289554f5950fc6a39b356a380df39016d6741cea09af",
+      "kind": "stage-result",
+      "status": "passed",
+      "subject": {
+        "type": "issue",
+        "id": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/issues/34"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "subject": {
+        "type": "issue",
+        "id": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/issues/34"
+      },
+      "status": "verified",
+      "evidenceIds": [
+        "completion:0d307e2f7c8a8c71122f9e5735f456791aee0ceab55b4761e11b92dfffd1bfc5"
+      ]
+    }
+  ]
+}

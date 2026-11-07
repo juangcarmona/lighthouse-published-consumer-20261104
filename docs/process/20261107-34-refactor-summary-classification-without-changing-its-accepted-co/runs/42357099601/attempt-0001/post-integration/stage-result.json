@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "runId": "0d307e2f7c8a8c71122f9e5735f456791aee0ceab55b4761e11b92dfffd1bfc5",
+  "stage": "integrate",
+  "gate": "done",
+  "status": "passed",
+  "evidence": [
+    {
+      "id": "github-check:128356721223",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42356859141/job/128356721223",
+      "reason": "Host-authenticated repository check from app 15368 passed on the accepted head; this is the only configured forge check gate."
+    },
+    {
+      "id": "implementation:42356093715:1:a21f1de062b51e686d7d0f22feb3f6f076103203b8257081a7f4c8da43bc1864:1",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42356093715/attempts/1",
+      "reason": "npm ci --ignore-scripts exited zero; four low-severity advisories were reported, not a failed check."
+    },
+    {
+      "id": "implementation:42356093715:1:a21f1de062b51e686d7d0f22feb3f6f076103203b8257081a7f4c8da43bc1864:2",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42356093715/attempts/1",
+      "reason": "npm run verify exited zero, including preflight, delivery-profile validation and all 15 summary tests."
+    },
+    {
+      "id": "implementation:42356093715:1:a21f1de062b51e686d7d0f22feb3f6f076103203b8257081a7f4c8da43bc1864:3",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42356093715/attempts/1",
+      "reason": "Lighthouse manifest, boundaries and managed projection verification passed."
+    },
+    {
+      "id": "implementation:42356093715:1:a21f1de062b51e686d7d0f22feb3f6f076103203b8257081a7f4c8da43bc1864:4",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42356093715/attempts/1",
+      "reason": "Repository Lighthouse guard verification exited zero."
+    },
+    {
+      "id": "implementation:42356093715:1:a21f1de062b51e686d7d0f22feb3f6f076103203b8257081a7f4c8da43bc1864:5",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42356093715/attempts/1",
+      "reason": "Citation verification exited zero. Retained provider rows bind all three issue-34 planning documents to both current canonical artifacts despite excerpt truncation; zero stale, tampered or unresolved citations and zero errors."
+    },
+    {
+      "id": "implementation:42356093715:1:a21f1de062b51e686d7d0f22feb3f6f076103203b8257081a7f4c8da43bc1864:6",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42356093715/attempts/1",
+      "reason": "Strict OpenSpec validation passed; explicit skip_specs permits zero deltas for this behavior-preserving refactor."
+    },
+    {
+      "id": "acceptance-source-inspection",
+      "status": "passed",
+      "source": "/workspace/src/summary.mjs",
+      "reason": "Direct inspection against BR-SUMMARY-001, FR-SUMMARY-001 and issue acceptance: strict switch cases, fixed default unavailable bucket, exactly four counters, no input writes. Test assertions cover exact results, contents, identities, order, prototype-key and boxed-string statuses and frozen observations."
+    },
+    {
+      "id": "scope-and-guidance-inspection",
+      "status": "passed",
+      "source": "/workspace/.lighthouse/implement.json",
+      "reason": "Host-supplied six changed paths are confined to summary source/tests and issue-34 OpenSpec plan. Root guidance, consumer contract and OpenSpec canonical-authority rules were inspected; no model, prior plan, tooling, hook or workflow policy edits are listed."
+    },
+    {
+      "id": "owner-approval:5811133828",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/pull/36#pullrequestreview-5811133828",
+      "reason": "Host-supplied exact-head owner approval and structured merge:true authorization match PR 36 and the accepted head. Approval prose is not used to expand permissions."
+    }
+  ],
+  "missingEvidence": [],
+  "unavailableChecks": [],
+  "pendingReview": [],
+  "nextAction": "Trusted publisher: recheck current exact-head authority, required repository check and reservation, then request the authorized merge under GitHub protections; retain the actual outcome and original post-merge CI continuation for the separate review stage.",
+  "output": {
+    "assessment": "Ready for an authorized merge request; no merge has been performed or proven by this assessment.",
+    "binding": {
+      "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+      "issue": 34,
+      "pr": 36,
+      "head": "85f2cd9b58d17707840666e63c388dbb4918df76",
+      "base": "71143ded4e2c10985ae7acee77c7ee9609fccae6",
+      "branch": "main",
+      "intent": "8c1ccba6a727483228237ae032662f839712708781d1dd09e3a88c3d1bfbdd80",
+      "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+      "reviews": "2daca07d7b3fac4ff8c490f0fe25e03b0a892527ca2623dd0046238430daa962",
+      "prIntent": "ff0127a9269507594115fb98f8824a9fe18794d5dd184f2a012492cfe36af9e2",
+      "files": "bc3997de23c1b4de9018715e67c622d0043f77e267c33d8834e65589e22fe18e"
+    },
+    "provenance": {
+      "source": "Host-authenticated completion context, not an independently queried GitHub or git identity.",
+      "requestId": "2dd6238d0a4d3acc57503d7b70148bb272d29e965092b1be9fd059d867367494",
+      "dispatchDigest": "1108e40da0336643b0ccd8510e294fdae4c515350fb87a1828721edb0386b46f",
+      "workflowRunId": "42357099601",
+      "observedAt": "2026-11-07T08:49:51.478Z"
+    },
+    "integration": {
+      "sourceBranch": "lighthouse/implement-34-9f18ea991802",
+      "targetBranch": "main",
+      "checkedRevision": "85f2cd9b58d17707840666e63c388dbb4918df76",
+      "mergeableObservation": true,
+      "mergeAuthorized": true,
+      "authorizationOwner": "juangcarmona",
+      "approvalId": 5811133828,
+      "merged": false,
+      "mergeReceipt": null,
+      "action": "Trusted publisher may request merge only after fresh validation; GitHub enforces strict current-base checks and merge rules.",
+      "mergeMethodsAllowed": [
+        "merge",
+        "squash",
+        "rebase"
+      ],
+      "dependencyOrder": "No stack or separate new product decision is declared. Existing BR-SUMMARY-001 and FR-SUMMARY-001 remain unchanged dependencies. Verified candidate publication and exact-head approval precede integration; original post-merge CI precedes final review and issue closure.",
+      "nativeBranch": "The host identifies the native implementation PR branch. The general branchPattern in lighthouse.json is not treated as evidence that this host-created lifecycle branch is invalid; current forge policy declares no branch-name check."
+    },
+    "acceptance": {
+      "classification": "summary.mjs:1-9 uses switch strict equality: only primitive passed and failed match; all other status values return unavailable. No status-derived property key escapes the classifier.",
+      "shapeAndPreservation": "summary.mjs:12-18 initializes exactly total, passed, failed and unavailable, increments one fixed bucket per observation and never writes to inputs.",
+      "regressionCoverage": "summary.test.mjs:4-59 covers baseline scenarios and preservation; lines 61-102 assert separate prototype-key and boxed-string results and frozen mixed input, including nested and status identities.",
+      "historicalAssertionPreservation": "Current baseline assertions remain present. Byte-for-byte historical preservation during verification-only correction relies on the host-verified frozen verification inputs and exact-head owner acceptance; this engine did not independently reconstruct an earlier revision diff.",
+      "scope": "Only src/summary.mjs, src/summary.test.mjs and four issue-34 planning files appear in the authenticated changed-file list.",
+      "planning": "Proposal/design/tasks bind unchanged canonical artifacts; explicit skip_specs matches absence of product behavior changes. Source inspection agrees with the canonical requirements, not merely the implementation-authored tests.",
+      "publication": "Host-verified implementation publication binds PR 36 head 85f2cd9b58d17707840666e63c388dbb4918df76 to checked tree 3c356a20f6e41f87661c142da2d8f2d973d0563a. Verification baseline/current are both 71143ded4e2c10985ae7acee77c7ee9609fccae6 and unchanged."
+    },
+    "findings": [
+      {
+        "kind": "nonblocking-product-model-warning",
+        "source": "docs/product/model/requirements/functional/fr-summary-001.md; citation command diagnostic PRODUCT103",
+        "finding": "FR-SUMMARY-001 is not reachable from an actor. The command passed with one warning and no errors. This is a model traceability finding, not an observed summary source defect or evidence of changed product intent.",
+        "owner": "Product owner",
+        "decision": "Record for separate consideration; do not edit accepted product definitions or add an integration gate in this refactor."
+      },
+      {
+        "kind": "nonblocking-dependency-advisory",
+        "source": "Host-verified npm ci receipt",
+        "finding": "Four low-severity vulnerabilities reported; affected packages and exploitability are not established by this excerpt. Installation exited zero and no audit gate is configured.",
+        "owner": "Repository dependency maintainer",
+        "decision": "No dependency edits, forced fixes or exploit verification in this stage."
+      },
+      {
+        "kind": "guidance-context",
+        "source": "LIGHTHOUSE.md:9-17; docs/consumer-contract.md:5; openspec/config.yaml:3-8",
+        "finding": "Generated guidance reports ProductShape integration unadopted while repository-owned canonical summary artifacts and their accepted intent are supplied by the task. Manifest integration status is not proof that the repository has no canonical product requirements. The consumer contract also retains historical issue-12 preparation language.",
+        "owner": "Repository maintainer",
+        "decision": "Apply unchanged canonical summary requirements and issue-specific acceptance. These untouched contextual statements do not authorize a new ProductShape apply or constitute a source defect. No guidance rewrite is requested."
+      }
+    ],
+    "optionalObservations": [
+      {
+        "name": "epic-triage",
+        "status": "skipped",
+        "decision": "Not a required integration check."
+      },
+      {
+        "name": "pr-state",
+        "status": "skipped",
+        "decision": "Not a required integration check."
+      },
+      {
+        "name": "continue-post-merge-review",
+        "status": "skipped",
+        "decision": "Pre-merge observation, not failure or proof of later continuation. CI configuration limits continuation to successful default-branch push/dispatch. Final outcome belongs to review."
+      }
+    ],
+    "synchronization": {
+      "executor": "Trusted publisher after validated assessment",
+      "observedIssue": {
+        "state": "open",
+        "labels": [
+          "pr-ready"
+        ]
+      },
+      "observedPullRequest": {
+        "state": "open",
+        "merged": false,
+        "labels": []
+      },
+      "onPassed": {
+        "add": [],
+        "remove": [],
+        "closeIssue": false
+      },
+      "onBlocked": {
+        "add": [],
+        "remove": [],
+        "closeIssue": false
+      },
+      "pullRequestLabels": "preserve",
+      "reservation": "Host acquires agent-working after observation and releases it for every outcome. Final labels are not prerequisites already due before this assessment.",
+      "decision": "Preserve issue/PR labels and keep issue 34 open at integration. Closure follows final review after original post-merge CI, not this passed assessment."
+    },
+    "laterStageObligations": [
+      {
+        "stage": "review",
+        "item": "Actual authorized merge receipt",
+        "status": "not-yet-observed",
+        "owner": "Trusted publisher"
+      },
+      {
+        "stage": "review",
+        "item": "Original post-merge ci.yml success and unattended continuation",
+        "status": "not-yet-performed",
+        "owner": "Trusted publisher and delivery workflow",
+        "source": ".github/workflows/ci.yml:25-49"
+      },
+      {
+        "stage": "review",
+        "item": "Retained final review with retrospective, followed by automatic issue closure",
+        "status": "not-yet-performed",
+        "owner": "Review workflow",
+        "constraint": "No manual maintenance or owner resignal is part of acceptance."
+      }
+    ],
+    "inspectionLimits": "CodeGraph context query was unavailable; direct source reads supplied the needed inspection instead. No local execution or new test receipt is claimed. Prior planning review and prior integration are null, not invented approvals; issue-34 policy does not require an independent implementation review. Retrospective publication belongs to the separately requested review stage."
+  }
+}
