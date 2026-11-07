@@ -1,0 +1,18 @@
+## What went well
+- Two meaningful no-coercion cases preserve strict behavior and frozen inputs (`src/summary.test.mjs:218-264`); the verified implementation run reports all 26 tests and six declared checks passing. Owner exact-head review and the retained merge receipt keep approval distinct from actual integration. Original post-merge run 42373925660 supplies the previously missing CI evidence.
+
+## What went wrong
+- The native publisher branch conflicted with `lighthouse.json:44`; owner review 5812251332 records blocked integration 42372867881 and a one-time exception. General compatibility remains unresolved under `juangcarmona/lighthouse#547`. This is retry history for issue #46, not demonstrated recurrence across issues.
+- Citation verification retained PRODUCT103 for actor reachability; installation retained four low-severity audit notices. Neither failed a check or establishes an application source defect. No new source defect or guidance drift was established.
+
+## Start doing
+- Publisher/guard maintainers: assess branch compatibility before publication using the same adopted convention, with narrowly scoped exceptions kept explicit. Candidate only; requires independent review and regression proof.
+- Product-model and dependency owners: triage the retained diagnostics separately from test-only delivery, preserving authority boundaries and the unknown advisory details.
+
+## Stop doing
+- Do not treat a green check as test adequacy, an integration assessment as proof of merge, skipped jobs as failures, or a single retry sequence as recurring delivery failure. Do not broaden the exact-head branch exception or silently edit provider guidance.
+
+## Improvement candidates
+1. **Publisher branch compatibility** — Owner: Lighthouse publisher/guard maintainers; reference: `juangcarmona/lighthouse#547`. Observed failure: the native branch required an owner exception despite declared checks passing. Evidence: `lighthouse.json:44` and review 5812251332. Smallest useful guard: validate the proposed native branch against the adopted pattern before publication, retaining explicit exception handling. Reproduce first with a fixture using `lighthouse/implement-46-8ed1271c322a` and the current pattern; show incompatibility, then independently review and regression-test a compatible name, a rejected incompatible name, and exact-head-only exception scope. No correction or regression run is claimed here.
+2. **Model diagnostic triage** — Owner: repository product-model owner; reference: this record, product103. Observed gap: FR-SUMMARY-001 actor reachability warning remains. Evidence: retained structured citation diagnostic at `docs/product/model/requirements/functional/fr-summary-001.md`. Smallest useful guard: an explicitly owned warning disposition, not a new delivery gate. Reproduce the warning using the existing citation-verification command before proposing any authorized model correction; separately review the authority change and confirm the warning is resolved while citations remain current. No correction is authorized here.
+3. **Dependency notice disposition** — Owner: repository dependency maintainer; reference: this record, dependency-audit-notices. Observed gap: installation reports four low-severity notices without retained advisory detail. Smallest useful guard: retain an advisory-level applicability/disposition summary in a separately authorized dependency review. Reproduce the notices from the same lockfile in that review before proposing updates; validate any reviewed update with the declared suite and compare advisory results without exploit testing. Package identities, remediation and recurrence remain unknown.
