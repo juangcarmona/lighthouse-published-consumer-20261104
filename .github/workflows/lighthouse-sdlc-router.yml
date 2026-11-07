@@ -245,7 +245,6 @@ jobs:
       issues: write
       pull-requests: read
     env:
-      LIGHTHOUSE_ACCEPTANCE_GATE_LOG: ${{ runner.temp }}/541-gates.jsonl
       LIGHTHOUSE_INTEGRATION_REQUEST: ${{ needs.route.outputs.integration_request }}
       LIGHTHOUSE_ISSUE: ${{ needs.route.outputs.issue }}
       LIGHTHOUSE_EPIC_PARENT: ${{ needs.route.outputs.epic_parent }}
@@ -272,6 +271,7 @@ jobs:
       - name: Hold the issue 59 continuation before preparation
         env:
           GH_TOKEN: ${{ github.token }}
+          LIGHTHOUSE_ACCEPTANCE_GATE_LOG: ${{ runner.temp }}/541-gates.jsonl
           LIGHTHOUSE_ACCEPTANCE_541_ISSUE: ${{ vars.LIGHTHOUSE_ACCEPTANCE_541_ISSUE }}
         run: node .fixture/scripts/acceptance-541-gates.mjs before-preparation
       - name: Record the authorized request
@@ -292,6 +292,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           LIGHTHOUSE_DISPATCH_COMMENT: ${{ steps.request.outputs.comment }}
+          LIGHTHOUSE_ACCEPTANCE_GATE_LOG: ${{ runner.temp }}/541-gates.jsonl
           LIGHTHOUSE_ACCEPTANCE_541_ISSUE: ${{ vars.LIGHTHOUSE_ACCEPTANCE_541_ISSUE }}
         run: node --import "$GITHUB_WORKSPACE/.fixture/scripts/acceptance-541-preload.mjs" .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs dispatch-send
       - name: Retain the isolated timing observations
