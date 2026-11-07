@@ -399,3 +399,34 @@ test("returns independent empty-inventory summaries without retaining prior coun
   assert.ok(Object.isFrozen(checks));
   assert.deepEqual(Object.getOwnPropertyDescriptors(checks), descriptors);
 });
+
+test("preserves frozen numeric, boolean and nullish statuses in a mixed inventory", () => {
+  const statuses = [true, false, 0, -0, NaN, Infinity, -Infinity, null, undefined, "", "passed", "failed"];
+  const checks = Object.freeze(statuses.map(status => Object.freeze({
+    status,
+    details: Object.freeze({ notes: Object.freeze(["original"]) })
+  })));
+  const snapshot = structuredClone(checks);
+  const observations = [...checks];
+  const originalStatuses = checks.map(check => check.status);
+  const details = checks.map(check => check.details);
+  const notes = checks.map(check => check.details.notes);
+
+  assert.deepEqual(summarize(checks), { total: 12, passed: 1, failed: 1, unavailable: 10 });
+
+  assert.equal(checks.length, 12);
+  assert.deepEqual(checks, snapshot);
+  assert.ok(Object.isFrozen(checks));
+  checks.forEach((check, index) => {
+    assert.strictEqual(check, observations[index]);
+    assert.ok(Object.is(check.status, originalStatuses[index]));
+    assert.ok(Object.is(check.status, statuses[index]));
+    assert.ok(Object.isFrozen(check));
+    assert.strictEqual(check.details, details[index]);
+    assert.strictEqual(check.details.notes, notes[index]);
+    assert.deepEqual(check.details, snapshot[index].details);
+    assert.deepEqual(check.details.notes, snapshot[index].details.notes);
+    assert.ok(Object.isFrozen(check.details));
+    assert.ok(Object.isFrozen(check.details.notes));
+  });
+});
