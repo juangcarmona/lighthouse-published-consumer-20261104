@@ -594,5 +594,64 @@
         "src/summary.test.mjs": "Append only the exact mixed primitive matrix requested by issue #54; preserve all previous assertions and the production functions."
       }
     }
+  },
+  "59": {
+    "scope": "Deliver only issue #59: append one frozen symbol/object status characterization test and its own plan. Preserve all 31 existing tests byte-for-byte, production bodies and exports, accepted models, previous plans, tooling, hooks, workflow/check policies and customizations. The host owns OpenSpec metadata. No ProductShape apply is authorized.",
+    "paths": [
+      "src/summary.test.mjs",
+      "openspec/changes/issue-59-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Append only the exact four-status symbol/object characterization required by issue #59. Preserve the complete prior 31-test prefix and every production function."
+      }
+    }
   }
 }
