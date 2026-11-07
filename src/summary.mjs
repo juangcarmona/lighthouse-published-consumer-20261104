@@ -1,10 +1,11 @@
 function classify(check) {
-  if (check.status === "passed") {
-    return "passed";
-  } else if (check.status === "failed") {
-    return "failed";
-  } else {
-    return "unavailable";
+  switch (check.status) {
+    case "passed":
+      return "passed";
+    case "failed":
+      return "failed";
+    default:
+      return "unavailable";
   }
 }
 
