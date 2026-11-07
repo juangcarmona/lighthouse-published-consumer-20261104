@@ -14,7 +14,7 @@ on:
         type: choice
         options: [ff, hotfix]
 env:
-  LIGHTHOUSE_ENGINE_CONFIG: ${{ inputs.issue == '54' && vars.LIGHTHOUSE_ACCEPTANCE_PLAN_REPAIR == 'true' && '/home/juan/.local/share/lighthouse-runtime/home-published-consumer/414-ff-plan-probe-engine.json' || '/home/juan/.local/share/lighthouse-runtime/engine.json' }}
+  LIGHTHOUSE_ENGINE_CONFIG: ${{ inputs.issue == '59' && vars.LIGHTHOUSE_ACCEPTANCE_541_ISSUE == '59' && '/home/juan/.local/share/lighthouse-runtime/home-published-consumer/541-acceptance-engine.json' || (inputs.issue == '54' && vars.LIGHTHOUSE_ACCEPTANCE_PLAN_REPAIR == 'true' && '/home/juan/.local/share/lighthouse-runtime/home-published-consumer/414-ff-plan-probe-engine.json' || '/home/juan/.local/share/lighthouse-runtime/engine.json') }}
 permissions: {}
 concurrency:
   group: lighthouse-issue-${{ inputs.issue }}
@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.9
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.10
       - name: Load current product source
         uses: actions/checkout@v5
         with:
