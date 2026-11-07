@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "state": "merged",
+  "sha": "bc40c2af6266001a7c9831ba02da9eb5686d8e14",
+  "acceptedHead": "3d957b0dc2657e58da1ea25057b8a437d8900e36",
+  "authorization": {
+    "issue": 38,
+    "pr": 40,
+    "head": "3d957b0dc2657e58da1ea25057b8a437d8900e36",
+    "merge": true,
+    "approval": {
+      "id": 5811467943,
+      "owner": "juangcarmona",
+      "head": "3d957b0dc2657e58da1ea25057b8a437d8900e36"
+    }
+  },
+  "binding": {
+    "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+    "issue": 38,
+    "pr": 40,
+    "head": "3d957b0dc2657e58da1ea25057b8a437d8900e36",
+    "base": "fce66fa1c50cf2791de1b4758e4a46e45a81a9fc",
+    "branch": "main",
+    "intent": "63f7cfccb30480d167dbf96fa581a250635b7dc37472e8c2a1b5fc2e619541ec",
+    "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+    "reviews": "5fdd60eb6fcb36c80d990252c7d40f5f9ad24675c844454ab63bb0f627a7441d",
+    "prIntent": "d225a51c3655cf6d11dbfb6fbfc9170aeb2430be96aa6ca1ceee10f7ddbc46d4",
+    "files": "b80960882412c44de4e48575e332bce3a47b00f0c16c3eeace9d57a0bdb72a60"
+  },
+  "recovered": false,
+  "postMerge": [
+    {
+      "workflow": "ci.yml",
+      "revision": "bc40c2af6266001a7c9831ba02da9eb5686d8e14",
+      "state": "missing",
+      "status": "unavailable",
+      "runId": null,
+      "url": null
+    }
+  ]
+}
