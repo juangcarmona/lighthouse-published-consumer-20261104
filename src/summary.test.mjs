@@ -262,3 +262,55 @@ for (const kind of ["Symbol.toPrimitive", "toString/valueOf"]) {
     assert.deepEqual(calls, { toPrimitive: 0, toString: 0, valueOf: 0 });
   });
 }
+
+for (const kind of ["accessor", "Proxy"]) {
+  test(`reads a repeated ${kind} observation once per inventory occurrence without caching`, () => {
+    const statuses = ["passed", "failed", undefined];
+    let reads = 0;
+    const trace = [];
+    const notes = Object.freeze(["original"]);
+    const details = Object.freeze({ notes });
+    const read = () => {
+      const occurrence = reads++;
+      assert.ok(occurrence < statuses.length, "status must not be read more than three times");
+      const status = statuses[occurrence];
+      trace.push([occurrence, status]);
+      return status;
+    };
+    const observation = kind === "accessor"
+      ? Object.freeze({ get status() { return read(); }, details })
+      : new Proxy(Object.freeze({ details }), {
+        get(target, property, receiver) {
+          if (property === "status") return read();
+          return Reflect.get(target, property, receiver);
+        }
+      });
+    const checks = Object.freeze([observation, observation, observation]);
+    const descriptors = Object.getOwnPropertyDescriptors(observation);
+    const inventoryDescriptors = Object.getOwnPropertyDescriptors(checks);
+    const detailsDescriptors = Object.getOwnPropertyDescriptors(details);
+    const notesDescriptors = Object.getOwnPropertyDescriptors(notes);
+    const expectedTrace = [[0, "passed"], [1, "failed"], [2, undefined]];
+
+    assert.deepEqual(summarize(checks), { total: 3, passed: 1, failed: 1, unavailable: 1 });
+    assert.equal(reads, 3);
+    assert.deepEqual(trace, expectedTrace);
+    assert.equal(checks.length, 3);
+    assert.ok(Object.isFrozen(checks));
+    assert.deepEqual(Object.getOwnPropertyDescriptors(checks), inventoryDescriptors);
+    checks.forEach(check => {
+      assert.strictEqual(check, observation);
+      assert.deepEqual(Object.getOwnPropertyDescriptors(check), descriptors);
+      assert.ok(Object.isFrozen(check));
+      assert.strictEqual(check.details, details);
+      assert.strictEqual(check.details.notes, notes);
+    });
+    assert.deepEqual(Object.getOwnPropertyDescriptors(details), detailsDescriptors);
+    assert.deepEqual(Object.getOwnPropertyDescriptors(notes), notesDescriptors);
+    assert.deepEqual(notes, ["original"]);
+    assert.ok(Object.isFrozen(details));
+    assert.ok(Object.isFrozen(notes));
+    assert.equal(reads, 3);
+    assert.deepEqual(trace, expectedTrace);
+  });
+}
