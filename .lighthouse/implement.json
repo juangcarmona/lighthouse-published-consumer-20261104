@@ -355,7 +355,8 @@
       ],
       "corrections": {
         "src/summary.test.mjs": "Append the abrupt-accessor/Proxy failure cases requested by issue #41, proving original error identity and no later status reads; preserve all existing assertions and cases."
-      }
+      },
+      "synchronizeBase": true
     }
   }
 }
