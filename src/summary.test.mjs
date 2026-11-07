@@ -314,3 +314,88 @@ for (const kind of ["accessor", "Proxy"]) {
     assert.deepEqual(trace, expectedTrace);
   });
 }
+
+test("returns independent mixed-inventory summaries across calls and caller mutation", () => {
+  const checks = Object.freeze([
+    Object.freeze({ status: "passed", details: Object.freeze({ notes: Object.freeze(["success"]) }) }),
+    Object.freeze({ status: "failed", details: Object.freeze({ notes: Object.freeze(["failure"]) }) }),
+    Object.freeze({ status: "unknown", details: Object.freeze({ notes: Object.freeze(["unavailable"]) }) }),
+    Object.freeze({ details: Object.freeze({ notes: Object.freeze([]) }) })
+  ]);
+  const snapshot = structuredClone(checks);
+  const observations = [...checks];
+  const details = checks.map(check => check.details);
+  const notes = checks.map(check => check.details.notes);
+  const inventoryDescriptors = Object.getOwnPropertyDescriptors(checks);
+  const descriptors = checks.map(check => Object.getOwnPropertyDescriptors(check));
+  const expected = { total: 4, passed: 1, failed: 1, unavailable: 2 };
+
+  const first = summarize(checks);
+  const second = summarize(checks);
+  assert.deepEqual(first, expected);
+  assert.deepEqual(second, expected);
+  assert.notStrictEqual(first, second);
+
+  const mutated = { total: 100, passed: 101, failed: 102, unavailable: 103 };
+  Object.assign(first, mutated);
+  assert.deepEqual(first, mutated);
+  assert.deepEqual(second, expected);
+
+  const later = summarize(checks);
+  assert.deepEqual(later, expected);
+  assert.notStrictEqual(later, first);
+  assert.notStrictEqual(later, second);
+  assert.deepEqual(first, mutated);
+  assert.deepEqual(second, expected);
+
+  assert.deepEqual(checks, snapshot);
+  assert.ok(Object.isFrozen(checks));
+  assert.deepEqual(Object.getOwnPropertyDescriptors(checks), inventoryDescriptors);
+  checks.forEach((check, index) => {
+    assert.strictEqual(check, observations[index]);
+    assert.deepEqual(Object.getOwnPropertyDescriptors(check), descriptors[index]);
+    assert.ok(Object.isFrozen(check));
+    assert.strictEqual(check.details, details[index]);
+    assert.strictEqual(check.details.notes, notes[index]);
+    assert.deepEqual(notes[index], snapshot[index].details.notes);
+    assert.ok(Object.isFrozen(details[index]));
+    assert.ok(Object.isFrozen(notes[index]));
+  });
+});
+
+test("returns independent empty-inventory summaries without retaining prior counts", () => {
+  const checks = Object.freeze([]);
+  const descriptors = Object.getOwnPropertyDescriptors(checks);
+  const expected = { total: 0, passed: 0, failed: 0, unavailable: 0 };
+  const prior = summarize(Object.freeze([
+    Object.freeze({ status: "passed" }),
+    Object.freeze({ status: "failed" }),
+    Object.freeze({ status: "unknown" })
+  ]));
+  assert.deepEqual(prior, { total: 3, passed: 1, failed: 1, unavailable: 1 });
+
+  const first = summarize(checks);
+  const second = summarize(checks);
+  assert.deepEqual(first, expected);
+  assert.deepEqual(second, expected);
+  assert.notStrictEqual(first, second);
+  assert.notStrictEqual(first, prior);
+  assert.notStrictEqual(second, prior);
+
+  const mutated = { total: 100, passed: 101, failed: 102, unavailable: 103 };
+  Object.assign(first, mutated);
+  assert.deepEqual(first, mutated);
+  assert.deepEqual(second, expected);
+
+  const later = summarize(checks);
+  assert.deepEqual(later, expected);
+  assert.notStrictEqual(later, first);
+  assert.notStrictEqual(later, second);
+  assert.notStrictEqual(later, prior);
+  assert.deepEqual(first, mutated);
+  assert.deepEqual(second, expected);
+  assert.deepEqual(prior, { total: 3, passed: 1, failed: 1, unavailable: 1 });
+  assert.deepEqual(checks, []);
+  assert.ok(Object.isFrozen(checks));
+  assert.deepEqual(Object.getOwnPropertyDescriptors(checks), descriptors);
+});
