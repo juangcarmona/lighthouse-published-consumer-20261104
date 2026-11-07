@@ -358,5 +358,64 @@
       },
       "synchronizeBase": true
     }
+  },
+  "46": {
+    "scope": "Deliver only issue #46: append strict no-coercion object-status characterization tests and its own OpenSpec plan. Preserve all function bodies, 24 original tests, accepted models, prior plans, tools, workflow/check policies and customizations. Preserve the supplied provider-owned .openspec.yaml metadata. No ProductShape apply or merge is authorized.",
+    "paths": [
+      "src/summary.test.mjs",
+      "openspec/changes/issue-46-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Append meaningful object-status no-coercion coverage for issue #46; preserve all existing assertions and 24 cases."
+      }
+    }
   }
 }

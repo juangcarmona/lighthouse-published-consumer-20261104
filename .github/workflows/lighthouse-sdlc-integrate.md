@@ -241,8 +241,8 @@ jobs:
             ${{ runner.temp }}/gh-aw/telemetry/export-health.json
           if-no-files-found: ignore
           retention-days: 14
-      - name: Retain integration in progress for the issue 41 continuation race
-        if: vars.LIGHTHOUSE_ACCEPTANCE_COMPLETION_DELAY == 'true' && inputs.issue == '41'
+      - name: Retain integration in progress for the issue 46 continuation race
+        if: vars.LIGHTHOUSE_ACCEPTANCE_COMPLETION_DELAY == 'true' && inputs.issue == '46'
         run: sleep 180
 
 ---
