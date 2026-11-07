@@ -57,3 +57,46 @@ test("supports frozen inventory and observation objects", () => {
   ]);
   assert.deepEqual(summarize(checks), { total: 4, passed: 1, failed: 1, unavailable: 2 });
 });
+
+for (const status of ["__proto__", "constructor", "toString", new String("passed"), new String("failed")]) {
+  const label = typeof status === "string" ? status : `boxed ${status}`;
+  test(`counts ${label} as unavailable without changing the observation`, () => {
+    const check = { status, details: { notes: ["original"] } };
+    const checks = [check];
+    const snapshot = structuredClone(checks);
+    const details = check.details;
+    const notes = details.notes;
+
+    assert.deepEqual(summarize(checks), { total: 1, passed: 0, failed: 0, unavailable: 1 });
+    assert.deepEqual(checks, snapshot);
+    assert.strictEqual(checks[0], check);
+    assert.strictEqual(check.status, status);
+    assert.strictEqual(check.details, details);
+    assert.strictEqual(check.details.notes, notes);
+  });
+}
+
+test("preserves frozen prototype-key and boxed-string observations in a mixed inventory", () => {
+  const statuses = [
+    "__proto__", "constructor", "toString",
+    Object.freeze(new String("passed")), Object.freeze(new String("failed")),
+    "passed", "failed"
+  ];
+  const checks = Object.freeze(statuses.map(status => Object.freeze({
+    status,
+    details: Object.freeze({ notes: Object.freeze(["original"]) })
+  })));
+  const snapshot = structuredClone(checks);
+  const originalOrder = [...checks];
+  const originalDetails = checks.map(check => check.details);
+  const originalNotes = checks.map(check => check.details.notes);
+
+  assert.deepEqual(summarize(checks), { total: 7, passed: 1, failed: 1, unavailable: 5 });
+  assert.deepEqual(checks, snapshot);
+  checks.forEach((check, index) => {
+    assert.strictEqual(check, originalOrder[index]);
+    assert.strictEqual(check.status, statuses[index]);
+    assert.strictEqual(check.details, originalDetails[index]);
+    assert.strictEqual(check.details.notes, originalNotes[index]);
+  });
+});
