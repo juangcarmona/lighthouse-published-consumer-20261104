@@ -214,3 +214,51 @@ for (const kind of ["accessor", "Proxy"]) {
     assert.deepEqual(trace, [0, 1]);
   });
 }
+
+for (const kind of ["Symbol.toPrimitive", "toString/valueOf"]) {
+  test(`classifies an object with throwing ${kind} hooks without coercion`, () => {
+    const calls = { toPrimitive: 0, toString: 0, valueOf: 0 };
+    const status = Object.freeze(kind === "Symbol.toPrimitive" ? {
+      [Symbol.toPrimitive]() {
+        calls.toPrimitive += 1;
+        throw new Error("Symbol.toPrimitive must not be called");
+      }
+    } : {
+      toString() {
+        calls.toString += 1;
+        throw new Error("toString must not be called");
+      },
+      valueOf() {
+        calls.valueOf += 1;
+        throw new Error("valueOf must not be called");
+      }
+    });
+    const statuses = ["passed", status, "failed"];
+    const details = statuses.map(() => Object.freeze({ notes: Object.freeze(["original"]) }));
+    const observations = statuses.map((value, index) => Object.freeze({
+      status: value, details: details[index]
+    }));
+    const checks = Object.freeze([...observations]);
+    const descriptors = observations.map(check => Object.getOwnPropertyDescriptors(check));
+    const statusDescriptors = Object.getOwnPropertyDescriptors(status);
+
+    assert.deepEqual(summarize(checks), { total: 3, passed: 1, failed: 1, unavailable: 1 });
+    assert.deepEqual(calls, { toPrimitive: 0, toString: 0, valueOf: 0 });
+    assert.ok(Object.isFrozen(checks));
+    assert.equal(checks.length, observations.length);
+    checks.forEach((check, index) => {
+      assert.strictEqual(check, observations[index]);
+      assert.strictEqual(check.status, statuses[index]);
+      assert.deepEqual(Object.getOwnPropertyDescriptors(check), descriptors[index]);
+      assert.ok(Object.isFrozen(check));
+      assert.strictEqual(check.details, details[index]);
+      assert.strictEqual(check.details.notes, details[index].notes);
+      assert.deepEqual(check.details.notes, ["original"]);
+      assert.ok(Object.isFrozen(check.details));
+      assert.ok(Object.isFrozen(check.details.notes));
+    });
+    assert.ok(Object.isFrozen(status));
+    assert.deepEqual(Object.getOwnPropertyDescriptors(status), statusDescriptors);
+    assert.deepEqual(calls, { toPrimitive: 0, toString: 0, valueOf: 0 });
+  });
+}
