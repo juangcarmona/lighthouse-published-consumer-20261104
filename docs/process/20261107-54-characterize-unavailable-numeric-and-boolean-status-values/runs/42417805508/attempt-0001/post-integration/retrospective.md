@@ -1,0 +1,20 @@
+## What went well
+- PR #58 delivers the exact frozen 12-observation characterization with a literal counter oracle and SameValue preservation checks (`src/summary.test.mjs:403-432`). No production defect or behavior change was established. Owner: implementation maintainer; R0 is fixed.
+- Six authenticated candidate checks passed, including 31 tests; exact-head and merged-revision repository checks passed. The retained authorized integration receipt and later CI run distinguish assessment, merge and verification. Owner: delivery maintainer.
+
+## What went wrong
+- The task record uses sandbox-local evidence paths (`tasks.md:7,34-37`), weakening portability when read outside that worker. R3 is a documentation/process gap, not missing execution evidence: the host supplies authenticated retained receipts.
+- Four low-severity dependency advisories (R1) and the PRODUCT103 actor-reachability warning (R2) remain. Neither successful command is a failed check; no causal connection to this test-only delivery is established. Their detailed remediation remains unknown.
+- No cross-work-item recurrence, attention-time, cost or automatic-scheduling failure is established. A prior-candidate reference in the plan is not evidence of recurring failures.
+
+## Start doing
+- Delivery maintainer: consider adding a stable run/artifact reference beside sandbox paths when publishing future task records (R3); keep candidate provenance and historical wording intact.
+- Dependency maintainer and product-definition owner: use R1/R2 as bounded triage references only if separately authorized. No follow-up issue or additional stage was opened here.
+
+## Stop doing
+- For future evidence summaries, avoid relying solely on worker-local paths as navigation (R3). Do not interpret green checks as test adequacy, draft product status as approval, or a passed assessment as proof of merge; this review inspected the fixture and used the retained merge receipt separately. These are bounded lessons, not claims of recurrent misuse.
+
+## Improvement candidates
+- **Portable receipt links (R3), deferred.** Observed failure: the delivered task record refers to `/output/evidence/` and `checked-candidate.json` without a portable retained location. Evidence: `tasks.md:7,34-37`; implementation artifact `lighthouse-unattended-42416039702-1` and pinned priorIntegration report provide an existing durable target. Owner: delivery maintainer; involve the SDLC provider maintainer if its renderer changes. Smallest useful guard: a publication-time report fixture requiring a stable run/artifact reference whenever worker-local evidence paths are emitted. Reproduce first using this task-record text in a report-reader fixture with no worker output mount; show that the reference cannot locate a retained receipt. Then require the proposed renderer to include the bound retained reference, preserving existing receipt identity and historical text. The guard is only proposed: it needs separate review and failing-before/passing-after regression proof; none was executed here.
+- **Product traceability (R2), deferred owner decision.** Observed warning: PRODUCT103 for `FR-SUMMARY-001`, retained in receipt :5. Owner: product-definition owner. Before any correction, reproduce the diagnostic with the approved provider verifier on the unchanged model. Smallest useful next step is to decide whether an actor relationship is valid, not suppress the warning or invent an actor. Any approved model change needs its own product review and verification of the corrected relationship, current citations and unchanged unrelated model semantics. No new mandatory guard is proposed without that decision.
+- **Dependency triage (R1), deferred investigation.** Evidence is only the four-advisory installation summary in receipt :1. Owner: dependency maintainer. Separately obtain package-specific advisory evidence before proposing a fix or guard; the smallest eventual regression must reproduce the identified problem without exploitation and rerun existing verification after an approved correction. No force upgrade, source defect or tested mitigation is inferred.

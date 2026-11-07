@@ -1,0 +1,355 @@
+{
+  "binding": "1751145acbecd44a99f302b702d3244b4d6e0683821935ee201a70f310edc09c",
+  "runId": "42416039702",
+  "attempt": "1",
+  "sourceRevision": "4cc202b24bda69519341b09393ac1d0beaf5e2e6",
+  "intent": "d363aa8e01350f752b141d2641f3bc6434248e1deb901357037a97d90c567597",
+  "policyDigest": "5d69ed3d4da78ca6da21e7644116e31babbb7e2ae7c5032a2e690a72c17798d5",
+  "details": {
+    "refined": {
+      "problem": {
+        "summary": "The current summary suite does not contain the requested complete frozen numeric/boolean/nullish/empty-string matrix with primitive success/failure controls. Characterize that existing behavior without modifying it.",
+        "affectedUsers": "Maintainers and consumers relying on exact summary counts and preservation of supplied observations.",
+        "desiredOutcome": "A new append-only mixed-inventory test documents that only primitive passed and failed strings are recognized, yielding exactly total 12, passed 1, failed 1 and unavailable 10 while preserving every supplied value and reference."
+      },
+      "scope": {
+        "applicationPaths": [
+          "src/summary.test.mjs"
+        ],
+        "planPath": "openspec/changes/issue-54-proposal/",
+        "constraints": [
+          "Append the new test; preserve all existing test text and assertions and leave src/summary.mjs unchanged.",
+          "Only this issue's OpenSpec plan may accompany the test. Preserve host-owned .openspec.yaml metadata and do not copy or edit prior plans.",
+          "Use the host-provided current citation payloads for BR-SUMMARY-001 and FR-SUMMARY-001 in product-dependent plan documents, with explicit pdac-scope declarations. Both artifacts are unchanged dependencies; their only reported neighbour is each other.",
+          "Mark implementation tasks complete only after actual work and recorded verification. Refinement itself does not complete implementation tasks."
+        ],
+        "outOfScope": [
+          "Production function bodies, exports, classification changes, input validation or coercion policy changes.",
+          "Accepted product or architecture models, ProductShape apply, product approval and new product requirements.",
+          "Prior plans, dependency/check configuration, tooling, hooks, workflow policy and consumer customizations.",
+          "Merge, release, deployment or any expansion of the admitted authority."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Append a frozen inventory with statuses true, false, 0, -0, NaN, Infinity, -Infinity, null, undefined and the empty string, alongside primitive passed and failed controls: 12 observations in a defined order.",
+        "Assert deep equality of the returned object to exactly { total: 12, passed: 1, failed: 1, unavailable: 10 }, rejecting missing or extra counters.",
+        "Capture original observation and nested references before summarization. Afterwards prove unchanged inventory length/order, observation identities, status values, nested identities/contents and frozen state of inventory, observations, details and nested arrays. Use Object.is or strict assertions with SameValue semantics for NaN and to distinguish -0 from 0; do not use JSON serialization as the scalar preservation oracle.",
+        "Preserve every existing test and production function body. The mounted-baseline comparison must show only an appended test plus this issue's plan, with no protected configuration/model/prior-plan edits.",
+        "Create this issue's cited OpenSpec plan under host-owned metadata without inventing a product/specification delta. Record tasks truthfully and validate issue-54-proposal strictly.",
+        "Execute all six admitted implementation checks, retain actual command results bound to the candidate, and publish only through the trusted admitted workflow. Later host verification and forge CI must not be presented as already completed."
+      ],
+      "dependencies": [
+        {
+          "name": "Existing summary contract and test conventions",
+          "owner": "Next admitted implementation worker",
+          "resolved": true,
+          "reason": "Source and existing frozen fixtures provide a direct, deterministic implementation pattern; no new package or runtime dependency is needed."
+        },
+        {
+          "name": "Read-only product discovery and citations",
+          "owner": "Trusted host for provenance; implementation worker for correct plan use",
+          "resolved": true,
+          "reason": "The prepared index and both inspect/impact/citation reports are present. No missing product outcome, drift or additional reported neighbour needs a human decision for this characterization."
+        },
+        {
+          "name": "New plan metadata and publication",
+          "owner": "Trusted host",
+          "resolved": true,
+          "reason": "The existing issue-specific delivery policy assigns metadata to the host and bounds the plan path. Metadata preparation and publication are later host duties, not missing current-stage product checks."
+        }
+      ],
+      "estimate": {
+        "points": 1,
+        "status": "confirmed",
+        "rationale": {
+          "scope": "Localized familiar characterization: append one frozen 12-observation fixture with exact-count and preservation assertions in one existing test file plus its own OpenSpec plan. No production behavior changes.",
+          "dependencies": "Existing Node test/assert facilities and frozen-fixture conventions suffice. Product dependencies and their single relationship are known; no upgrade, migration, external integration change or product decision is required.",
+          "verification": "Run the six admitted checks and inspect append-only scope, scalar preservation and nested identities. These are existing verification paths rather than new cross-contract behavior; their execution results and later forge CI are not yet available and are not claimed."
+        },
+        "confidence": "high",
+        "uncertainty": [
+          "Implementation command outcomes and later forge CI remain unobserved until execution; unexpected baseline failures must be reported rather than fixed by expanding scope."
+        ]
+      },
+      "eligibility": {
+        "points": 1,
+        "risk": "low",
+        "reversible": true,
+        "dependenciesResolved": true,
+        "scopeKnown": true,
+        "productChangeNeeded": false,
+        "humanDecisionRequired": false,
+        "reason": "FF fits the admitted 1–3 point, low-risk rule: issue #54 and .lighthouse/implement.json limit work to append-only tests and its plan, while src/summary.mjs already strictly classifies all ten requested scalar values as unavailable. BR-SUMMARY-001 and FR-SUMMARY-001 describe the same exact-count and preservation outcome; their draft status is not treated as approval. Reverting only the new test and issue plan restores the baseline without runtime effects. No unresolved product meaning or dependency requires a current-stage human decision; later stage/integration authorization is separate."
+      },
+      "verificationPlan": {
+        "executionStatus": "planned-not-executed",
+        "source": "context.unattended.implementationChecks",
+        "commands": [
+          [
+            "npm",
+            "ci",
+            "--ignore-scripts"
+          ],
+          [
+            "npm",
+            "run",
+            "verify"
+          ],
+          [
+            "npx",
+            "--no-install",
+            "lighthouse",
+            "verify"
+          ],
+          [
+            "node",
+            "scripts/lighthouse-guard.mjs",
+            "verify"
+          ],
+          [
+            "npx",
+            "--no-install",
+            "prodshape",
+            "citations",
+            "verify",
+            "--provider",
+            "openspec",
+            "--format",
+            "json"
+          ],
+          [
+            "npx",
+            "--yes",
+            "--package=@fission-ai/openspec@1.15.0",
+            "openspec",
+            "validate",
+            "issue-54-proposal",
+            "--strict",
+            "--no-interactive"
+          ]
+        ],
+        "executionRequirements": [
+          "Run from the candidate repository, install first, then execute every declared check without substituting inventory or prior issue receipts for execution.",
+          "Record argv, exit status and output for each actual check with candidate provenance. npm run verify must exercise both preserved cases and the appended matrix; citations verification must find no invalid current documents and strict OpenSpec validation must succeed.",
+          "Do not weaken checks or edit protected files to make failures pass. Report failures accurately and return for an authorized resolution when outside this issue's scope."
+        ],
+        "additionalAgentObservations": {
+          "status": "planned-not-executed",
+          "observations": [
+            "Compare the delivered candidate with the mounted baseline: summary.test.mjs has only appended coverage, summary.mjs and existing tests are unchanged, and all other edits belong to issue-54-proposal with host metadata preserved.",
+            "Inspect the fixture for all ten distinct requested scalar entries plus the two primitive controls, explicit -0/NaN-safe preservation assertions, exact four-field equality, and frozen nested content/reference checks.",
+            "Confirm plan citations use the prepared digests and completed tasks match actual implementation receipts, not refinement intentions."
+          ],
+          "independence": "These worker observations supplement but do not replace independent host checks or forge CI."
+        },
+        "laterIndependentVerification": {
+          "status": "not-executed-at-refinement",
+          "owner": "Trusted host",
+          "requirement": "Authenticate the candidate tree and command receipts and independently enforce admitted scope/checks before publication; this assessment supplies no execution receipt or permission to merge."
+        },
+        "laterForgeCI": {
+          "status": "not-observed",
+          "source": "/workspace/.github/workflows/ci.yml; /workspace/.lighthouse/github.json",
+          "requirement": "After publication, obtain the configured repository check for the exact candidate head from Consumer verification CI. That workflow runs installation, npm verification, Lighthouse verification and the guard; it does not replace the additional citation/OpenSpec checks. Post-merge CI is a separate configured follow-up, not evidence for this current stage."
+        }
+      }
+    },
+    "plan": {
+      "files": [
+        {
+          "path": "openspec/changes/issue-54-proposal/proposal.md",
+          "content": "---\npdac-scope: cited\n---\n\n# Proposal\n\n## Why\n\nIssue #54 requests one complete frozen mixed-inventory characterization of numeric, boolean, nullish and empty-string statuses. Existing coverage does not exercise that exact matrix and its preservation guarantees together.\n\n## What Changes\n\n- Append one test in `src/summary.test.mjs` covering `true`, `false`, `0`, `-0`, `NaN`, `Infinity`, `-Infinity`, `null`, `undefined` and `\"\"`, plus primitive `\"passed\"` and `\"failed\"` controls.\n- Assert exactly `{ total: 12, passed: 1, failed: 1, unavailable: 10 }` and preserve inventory order, observation and nested identities, original scalar values, nested contents and frozen state.\n- Deliver only this issue's plan alongside the appended test; preserve every existing test and production function body.\n\n## Capabilities\n\n### New Capabilities\n\nNone. This is characterization of existing behavior, not a new behavior contract.\n\n### Modified Capabilities\n\nNone. The source-bound inventory in `context.proposal.discovery` contains no specifications. No specification delta is needed; `.openspec.yaml` supplies only `skip_specs: true`, which the host combines with provider-owned metadata.\n\n## Impact\n\nApplication changes are limited to appending coverage in `src/summary.test.mjs`; plan changes are limited to `openspec/changes/issue-54-proposal/`. No API, production code, dependency, persistence, architecture, tooling, hook or check configuration changes are proposed. Prior plans and canonical models remain untouched.\n\n### Product dependencies and impact discovery\n\nThe complete host-reported product inventory contains two artifacts, both read before drafting. BR-SUMMARY-001 grounds exact primitive classification without normalization or coercion; it is an unchanged dependency.\n<!-- pdac:cite id=\"BR-SUMMARY-001\" digest=\"sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4\" -->\n\nFR-SUMMARY-001 grounds exactly four counters and preservation of contents, identities, order and frozen inputs; it is also an unchanged dependency.\n<!-- pdac:cite id=\"FR-SUMMARY-001\" digest=\"sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac\" -->\n\nThe prepared impact reports identify each artifact as the other's only direct neighbour and report no transitive neighbours. Both are included; no reported neighbour is excluded. Their recorded draft status grants no product approval. No product-definition drift or altered behavior is proposed, so no Product Change, ProductShape apply or product approval is requested. Architecture remains under its installed authority without edits or inferred decisions.\n\n## Delivery Boundary\n\nImplementation must execute all six checks listed in `tasks.md`, retain candidate-bound receipts and perform the separate scope and fixture observations. This proposal has not executed those checks. The trusted host validates and publishes through the admitted workflow; subsequent independent verification and exact-head forge CI remain separate evidence, not merge or release permission.\n"
+        },
+        {
+          "path": "openspec/changes/issue-54-proposal/design.md",
+          "content": "---\npdac-scope: cited\n---\n\n# Design\n\n## Context\n\nSee `proposal.md` for motivation and product-impact discovery. `summarize` already reads each observation's status and classifies only exact primitive `\"passed\"` and `\"failed\"` strings; all other requested statuses are unavailable. Keep that implementation unchanged.\n<!-- pdac:cite id=\"BR-SUMMARY-001\" digest=\"sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4\" -->\n\nThe result already has exactly four counters, and supplied contents, observation identities, order and frozen inputs must be preserved. Existing tests use `node:test`, `node:assert/strict` and frozen nested fixtures.\n<!-- pdac:cite id=\"FR-SUMMARY-001\" digest=\"sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac\" -->\n\n## Goals / Non-Goals\n\n**Goals:** One deterministic, append-only test that makes the requested counts and preservation guarantees explicit.\n\n**Non-Goals:** Production edits, coercion or validation policy changes, new specifications, dependencies, model changes, prior-plan edits, architecture decisions or workflow changes. No public interface, stored-data or deployment effects.\n\n## Decisions\n\n1. **One mixed inventory, not ten isolated cases.** Use the fixed order `[true, false, 0, -0, NaN, Infinity, -Infinity, null, undefined, \"\", \"passed\", \"failed\"]`. Build twelve distinct observations, each with its own frozen `details` object containing a frozen `notes` array, and freeze the observations and inventory. Controls demonstrate recognized classifications in the same call; separate cases would not assert the requested combined result.\n2. **Independent literal oracle.** Invoke `summarize` and use strict deep equality against exactly `{ total: 12, passed: 1, failed: 1, unavailable: 10 }`. Do not derive expected counters from production logic or accept only a subset of result fields. This characterizes the unchanged classification rule.\n<!-- pdac:cite id=\"BR-SUMMARY-001\" digest=\"sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4\" -->\n\n3. **Capture references before the call.** Save the original ordered observations, statuses, details and notes references, plus independent content snapshots using `structuredClone` or explicit copies. Afterward assert length 12, identity at every inventory index, nested reference identity, unchanged contents and `Object.isFrozen` for the inventory, each observation, each details object and each notes array. Compare each scalar with `Object.is` or strict SameValue assertions, preserving `NaN` and distinguishing `-0` from `0`. JSON serialization is not a preservation oracle because it loses these distinctions. Freeze alone does not prove reference or content preservation.\n<!-- pdac:cite id=\"FR-SUMMARY-001\" digest=\"sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac\" -->\n\n4. **No specification delta.** Remove the prior candidate's invented capability and repeated requirement rather than shorten and retain them. This replacement consists of three cited Markdown documents and the `skip_specs: true` payload only; the host retains ownership of final metadata.\n\n## Risks / Trade-offs\n\n- [Scalar oracle conflates unusual numbers] → Use SameValue semantics, never JSON or ordinary equality alone.\n- [Snapshots miss replaced references or freeze regressions] → Combine independent contents, saved references and explicit frozen-state assertions at every nested level.\n- [Checks reveal unrelated baseline failures] → Record failures and seek an authorized resolution; do not alter protected files or weaken checks.\n\n## Verification and Migration Plan\n\nImplement the single test slice, then execute the six admitted commands in `tasks.md` from the candidate repository, installation first. Preserve argv, exit status, output and candidate provenance. Agent fixture/scope observations supplement rather than replace these checks. No commands were executed by this proposal worker.\n\nNo migration or runtime rollout is needed. If rollback is authorized, remove only the appended test and this issue's newly introduced plan, preserving unrelated work. Host validation/materialization precedes implementation; authenticated host verification precedes publication, and configured forge CI for the exact published head follows separately. No unresolved design question affects implementation.\n"
+        },
+        {
+          "path": "openspec/changes/issue-54-proposal/tasks.md",
+          "content": "---\npdac-scope: cited\n---\n\n# Tasks\n\nAll tasks are planned and unchecked. Mark completion only after actual work and recorded verification; neither this inventory nor the proposal is an execution receipt.\n\n## 1. Frozen characterization slice\n\n- [ ] 1.1 Append one mixed-inventory test in `src/summary.test.mjs` using the twelve ordered statuses in `design.md`; verify with `npm run verify` that strict deep equality returns exactly `{ total: 12, passed: 1, failed: 1, unavailable: 10 }`, while SameValue scalar assertions, pre-call observation/nested references, independent content snapshots and explicit frozen-state assertions prove length/order, identity and content preservation at every level.\n<!-- pdac:cite id=\"BR-SUMMARY-001\" digest=\"sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4\" -->\n<!-- pdac:cite id=\"FR-SUMMARY-001\" digest=\"sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac\" -->\n\n- [ ] 1.2 Inspect the candidate against the mounted baseline and record the scope observation: all original test text remains unchanged before the appended test; `src/summary.mjs` is unchanged; all other edits are confined to this issue's plan. Verify its three Markdown files retain explicit scope/citations, no spec delta exists, host metadata is preserved and task completion statements match actual work. Do not edit prior plans, models, configuration, tooling or hooks.\n\n## 2. Candidate-wide integration checks\n\n- [ ] 2.1 Execute every command below from the candidate repository, installation first, and retain argv, exit status, output and candidate/tree provenance for each. Verify installation succeeds, the preserved suite and appended matrix pass, all declared verifiers succeed, citations are current and strict OpenSpec validation accepts the no-delta plan. Report any failure accurately without widening scope or weakening checks.\n\n```text\nnpm ci --ignore-scripts\nnpm run verify\nnpx --no-install lighthouse verify\nnode scripts/lighthouse-guard.mjs verify\nnpx --no-install prodshape citations verify --provider openspec --format json\nnpx --yes --package=@fission-ai/openspec@1.15.0 openspec validate issue-54-proposal --strict --no-interactive\n```\n\nDefinition of Done: the appended test and plan are delivered within scope; every tracked task has its stated evidence; all six checks pass on the candidate. Agent observations of fixture completeness, SameValue preservation, append-only scope and truthful task state are additional evidence, not independent host verification or forge CI.\n\n## Workflow follow-up\n\n- The trusted host authenticates the candidate and receipts, independently enforces admitted checks/scope, and publishes only through the admitted workflow. This proposal grants no merge, release or product approval.\n- After publication, obtain the configured `repository` check from Consumer verification CI for the exact candidate head. Its four installation/verification commands do not replace the citation and strict OpenSpec checks above. Later stage review and configured post-merge CI are separate future evidence, not pending review of this planning stage.\n"
+        },
+        {
+          "path": "openspec/changes/issue-54-proposal/.openspec.yaml",
+          "content": "schema: spec-driven\ncreated: 2026-11-07\nskip_specs: true\n"
+        }
+      ],
+      "refinement": {
+        "problem": {
+          "summary": "The current summary suite does not contain the requested complete frozen numeric/boolean/nullish/empty-string matrix with primitive success/failure controls. Characterize that existing behavior without modifying it.",
+          "affectedUsers": "Maintainers and consumers relying on exact summary counts and preservation of supplied observations.",
+          "desiredOutcome": "A new append-only mixed-inventory test documents that only primitive passed and failed strings are recognized, yielding exactly total 12, passed 1, failed 1 and unavailable 10 while preserving every supplied value and reference."
+        },
+        "scope": {
+          "applicationPaths": [
+            "src/summary.test.mjs"
+          ],
+          "planPath": "openspec/changes/issue-54-proposal/",
+          "constraints": [
+            "Append the new test; preserve all existing test text and assertions and leave src/summary.mjs unchanged.",
+            "Only this issue's OpenSpec plan may accompany the test. Preserve host-owned .openspec.yaml metadata and do not copy or edit prior plans.",
+            "Use the host-provided current citation payloads for BR-SUMMARY-001 and FR-SUMMARY-001 in product-dependent plan documents, with explicit pdac-scope declarations. Both artifacts are unchanged dependencies; their only reported neighbour is each other.",
+            "Mark implementation tasks complete only after actual work and recorded verification. Refinement itself does not complete implementation tasks."
+          ],
+          "outOfScope": [
+            "Production function bodies, exports, classification changes, input validation or coercion policy changes.",
+            "Accepted product or architecture models, ProductShape apply, product approval and new product requirements.",
+            "Prior plans, dependency/check configuration, tooling, hooks, workflow policy and consumer customizations.",
+            "Merge, release, deployment or any expansion of the admitted authority."
+          ]
+        },
+        "acceptanceCriteria": [
+          "Append a frozen inventory with statuses true, false, 0, -0, NaN, Infinity, -Infinity, null, undefined and the empty string, alongside primitive passed and failed controls: 12 observations in a defined order.",
+          "Assert deep equality of the returned object to exactly { total: 12, passed: 1, failed: 1, unavailable: 10 }, rejecting missing or extra counters.",
+          "Capture original observation and nested references before summarization. Afterwards prove unchanged inventory length/order, observation identities, status values, nested identities/contents and frozen state of inventory, observations, details and nested arrays. Use Object.is or strict assertions with SameValue semantics for NaN and to distinguish -0 from 0; do not use JSON serialization as the scalar preservation oracle.",
+          "Preserve every existing test and production function body. The mounted-baseline comparison must show only an appended test plus this issue's plan, with no protected configuration/model/prior-plan edits.",
+          "Create this issue's cited OpenSpec plan under host-owned metadata without inventing a product/specification delta. Record tasks truthfully and validate issue-54-proposal strictly.",
+          "Execute all six admitted implementation checks, retain actual command results bound to the candidate, and publish only through the trusted admitted workflow. Later host verification and forge CI must not be presented as already completed."
+        ],
+        "dependencies": [
+          {
+            "name": "Existing summary contract and test conventions",
+            "owner": "Next admitted implementation worker",
+            "resolved": true,
+            "reason": "Source and existing frozen fixtures provide a direct, deterministic implementation pattern; no new package or runtime dependency is needed."
+          },
+          {
+            "name": "Read-only product discovery and citations",
+            "owner": "Trusted host for provenance; implementation worker for correct plan use",
+            "resolved": true,
+            "reason": "The prepared index and both inspect/impact/citation reports are present. No missing product outcome, drift or additional reported neighbour needs a human decision for this characterization."
+          },
+          {
+            "name": "New plan metadata and publication",
+            "owner": "Trusted host",
+            "resolved": true,
+            "reason": "The existing issue-specific delivery policy assigns metadata to the host and bounds the plan path. Metadata preparation and publication are later host duties, not missing current-stage product checks."
+          }
+        ],
+        "estimate": {
+          "points": 1,
+          "status": "confirmed",
+          "rationale": {
+            "scope": "Localized familiar characterization: append one frozen 12-observation fixture with exact-count and preservation assertions in one existing test file plus its own OpenSpec plan. No production behavior changes.",
+            "dependencies": "Existing Node test/assert facilities and frozen-fixture conventions suffice. Product dependencies and their single relationship are known; no upgrade, migration, external integration change or product decision is required.",
+            "verification": "Run the six admitted checks and inspect append-only scope, scalar preservation and nested identities. These are existing verification paths rather than new cross-contract behavior; their execution results and later forge CI are not yet available and are not claimed."
+          },
+          "confidence": "high",
+          "uncertainty": [
+            "Implementation command outcomes and later forge CI remain unobserved until execution; unexpected baseline failures must be reported rather than fixed by expanding scope."
+          ]
+        },
+        "eligibility": {
+          "points": 1,
+          "risk": "low",
+          "reversible": true,
+          "dependenciesResolved": true,
+          "scopeKnown": true,
+          "productChangeNeeded": false,
+          "humanDecisionRequired": false,
+          "reason": "FF fits the admitted 1–3 point, low-risk rule: issue #54 and .lighthouse/implement.json limit work to append-only tests and its plan, while src/summary.mjs already strictly classifies all ten requested scalar values as unavailable. BR-SUMMARY-001 and FR-SUMMARY-001 describe the same exact-count and preservation outcome; their draft status is not treated as approval. Reverting only the new test and issue plan restores the baseline without runtime effects. No unresolved product meaning or dependency requires a current-stage human decision; later stage/integration authorization is separate."
+        },
+        "verificationPlan": {
+          "executionStatus": "planned-not-executed",
+          "source": "context.unattended.implementationChecks",
+          "commands": [
+            [
+              "npm",
+              "ci",
+              "--ignore-scripts"
+            ],
+            [
+              "npm",
+              "run",
+              "verify"
+            ],
+            [
+              "npx",
+              "--no-install",
+              "lighthouse",
+              "verify"
+            ],
+            [
+              "node",
+              "scripts/lighthouse-guard.mjs",
+              "verify"
+            ],
+            [
+              "npx",
+              "--no-install",
+              "prodshape",
+              "citations",
+              "verify",
+              "--provider",
+              "openspec",
+              "--format",
+              "json"
+            ],
+            [
+              "npx",
+              "--yes",
+              "--package=@fission-ai/openspec@1.15.0",
+              "openspec",
+              "validate",
+              "issue-54-proposal",
+              "--strict",
+              "--no-interactive"
+            ]
+          ],
+          "executionRequirements": [
+            "Run from the candidate repository, install first, then execute every declared check without substituting inventory or prior issue receipts for execution.",
+            "Record argv, exit status and output for each actual check with candidate provenance. npm run verify must exercise both preserved cases and the appended matrix; citations verification must find no invalid current documents and strict OpenSpec validation must succeed.",
+            "Do not weaken checks or edit protected files to make failures pass. Report failures accurately and return for an authorized resolution when outside this issue's scope."
+          ],
+          "additionalAgentObservations": {
+            "status": "planned-not-executed",
+            "observations": [
+              "Compare the delivered candidate with the mounted baseline: summary.test.mjs has only appended coverage, summary.mjs and existing tests are unchanged, and all other edits belong to issue-54-proposal with host metadata preserved.",
+              "Inspect the fixture for all ten distinct requested scalar entries plus the two primitive controls, explicit -0/NaN-safe preservation assertions, exact four-field equality, and frozen nested content/reference checks.",
+              "Confirm plan citations use the prepared digests and completed tasks match actual implementation receipts, not refinement intentions."
+            ],
+            "independence": "These worker observations supplement but do not replace independent host checks or forge CI."
+          },
+          "laterIndependentVerification": {
+            "status": "not-executed-at-refinement",
+            "owner": "Trusted host",
+            "requirement": "Authenticate the candidate tree and command receipts and independently enforce admitted scope/checks before publication; this assessment supplies no execution receipt or permission to merge."
+          },
+          "laterForgeCI": {
+            "status": "not-observed",
+            "source": "/workspace/.github/workflows/ci.yml; /workspace/.lighthouse/github.json",
+            "requirement": "After publication, obtain the configured repository check for the exact candidate head from Consumer verification CI. That workflow runs installation, npm verification, Lighthouse verification and the guard; it does not replace the additional citation/OpenSpec checks. Post-merge CI is a separate configured follow-up, not evidence for this current stage."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "schemaVersion": 1,
+    "runId": "2d039a39f955091bac59fa04da22daa7cea65ce5a048ba50dc3cda5a0d5c8d48",
+    "stage": "integrate",
+    "gate": "done",
+    "status": "passed",
+    "evidence": [],
+    "missingEvidence": [],
+    "unavailableChecks": [],
+    "pendingReview": [],
+    "output": {
+      "review": {
+        "binding": "1751145acbecd44a99f302b702d3244b4d6e0683821935ee201a70f310edc09c",
+        "verdict": "accept",
+        "findings": []
+      }
+    },
+    "nextAction": "Return to the trusted host for the remaining delivery gates."
+  },
+  "proposalRunId": "3b53d9f16b4274a301a7421ae9cc36bf9dd4c6489ce99f25c7da30f4dbfa37d6",
+  "reviewRunId": "2d039a39f955091bac59fa04da22daa7cea65ce5a048ba50dc3cda5a0d5c8d48",
+  "verdict": "accept",
+  "configuredModels": {
+    "producer": "openai/gpt-6.1-sol",
+    "reviewer": "openai/gpt-6-luna"
+  },
+  "providerSettings": "unverified",
+  "artifact": "lighthouse-unattended-42416039702-1",
+  "runUrl": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42416039702"
+}
