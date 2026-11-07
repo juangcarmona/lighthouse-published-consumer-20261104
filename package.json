@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@juangcarmona/lighthouse": "0.12.49"
+    "@juangcarmona/lighthouse": "0.12.50"
   },
   "name": "published-delivery-consumer",
   "private": true,
