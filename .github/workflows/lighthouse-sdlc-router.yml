@@ -13,7 +13,7 @@ on:
   pull_request:
     types: [ready_for_review, converted_to_draft, closed, reopened]
   workflow_run:
-    workflows: ["refine","integrate","triage","propose","apply review","implement","product-change","apply-product-change","Consumer verification"]
+    workflows: ["refine","integrate","unattended","triage","propose","apply review","implement","product-change","apply-product-change","Consumer verification"]
     types: [completed]
   schedule:
     - cron: '*/5 * * * *'

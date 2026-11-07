@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "enabled": true,
+  "routes": [
+    "ff"
+  ],
+  "paths": [
+    "src/summary.test.mjs"
+  ],
+  "reviewerProfile": "fast",
+  "allowFivePoint": false,
+  "merge": true,
+  "maxCorrections": 2,
+  "timeoutSeconds": 3600
+}
