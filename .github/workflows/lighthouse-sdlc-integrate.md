@@ -69,7 +69,7 @@ steps:
     with:
       node-version: 24
   - name: Install the published Lighthouse harness
-    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.3
+    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.4
   - name: Load the authorized issue context
     uses: actions/download-artifact@v8
     with:
@@ -118,7 +118,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.3
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.4
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -181,7 +181,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.3
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.4
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -241,8 +241,8 @@ jobs:
             ${{ runner.temp }}/gh-aw/telemetry/export-health.json
           if-no-files-found: ignore
           retention-days: 14
-      - name: Retain integration in progress for the issue 38 continuation race
-        if: vars.LIGHTHOUSE_ACCEPTANCE_COMPLETION_DELAY == 'true' && inputs.issue == '38'
+      - name: Retain integration in progress for the issue 41 continuation race
+        if: vars.LIGHTHOUSE_ACCEPTANCE_COMPLETION_DELAY == 'true' && inputs.issue == '41'
         run: sleep 180
 
 ---
