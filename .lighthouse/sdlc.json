@@ -3,7 +3,7 @@
   "schemaVersion": 1,
   "package": {
     "name": "@juangcarmona/lighthouse-sdlc",
-    "version": "0.21.9"
+    "version": "0.21.10"
   },
   "routes": [
     "supervised",
