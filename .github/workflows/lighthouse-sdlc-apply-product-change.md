@@ -76,7 +76,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.13
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.0
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -117,6 +117,24 @@ jobs:
           path: ${{ runner.temp }}/lighthouse-product-source.tar.gz
           if-no-files-found: error
           retention-days: 14
+      - name: Observe workflow telemetry
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/telemetry-workflow.mjs
+      - name: Preserve workflow telemetry
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-telemetry-${{ github.job }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/gh-aw/telemetry/*.jsonl
+            ${{ runner.temp }}/gh-aw/telemetry/????????-????-????-????-????????????.json
+            ${{ runner.temp }}/gh-aw/telemetry/export-health.json
+          if-no-files-found: ignore
+          retention-days: 14
   apply:
     name: Apply with the pinned ProductShape provider
     needs: [prepare]
@@ -136,7 +154,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.13
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.0
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -169,6 +187,24 @@ jobs:
           path: ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/apply-proof.json
           if-no-files-found: error
           retention-days: 30
+      - name: Observe workflow telemetry
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/telemetry-workflow.mjs
+      - name: Preserve workflow telemetry
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-telemetry-${{ github.job }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/gh-aw/telemetry/*.jsonl
+            ${{ runner.temp }}/gh-aw/telemetry/????????-????-????-????-????????????.json
+            ${{ runner.temp }}/gh-aw/telemetry/export-health.json
+          if-no-files-found: ignore
+          retention-days: 14
   publish:
     name: Recheck and publish provider output
     needs: [prepare, apply]
@@ -191,7 +227,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.13
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.0
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -219,6 +255,24 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs product-apply-publish
+      - name: Observe workflow telemetry
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/telemetry-workflow.mjs
+      - name: Preserve workflow telemetry
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-telemetry-${{ github.job }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/gh-aw/telemetry/*.jsonl
+            ${{ runner.temp }}/gh-aw/telemetry/????????-????-????-????-????????????.json
+            ${{ runner.temp }}/gh-aw/telemetry/export-health.json
+          if-no-files-found: ignore
+          retention-days: 14
   finalize:
     name: Report an interrupted product apply
     needs: [prepare, apply, publish]
@@ -240,7 +294,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.20.13
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.0
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -248,6 +302,24 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs product-apply-cleanup
+      - name: Observe workflow telemetry
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/telemetry-workflow.mjs
+      - name: Preserve workflow telemetry
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-telemetry-${{ github.job }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/gh-aw/telemetry/*.jsonl
+            ${{ runner.temp }}/gh-aw/telemetry/????????-????-????-????-????????????.json
+            ${{ runner.temp }}/gh-aw/telemetry/export-health.json
+          if-no-files-found: ignore
+          retention-days: 14
 ---
 
 # Apply an approved Product Change
