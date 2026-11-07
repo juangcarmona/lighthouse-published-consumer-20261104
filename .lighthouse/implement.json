@@ -234,7 +234,8 @@
       ],
       "corrections": {
         "src/summary.test.mjs": "Add prototype-key and boxed-string coverage requested by issue #34, including frozen observations. Preserve every existing assertion."
-      }
+      },
+      "synchronizeBase": true
     }
   }
 }
