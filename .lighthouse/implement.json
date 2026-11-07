@@ -476,5 +476,64 @@
         "src/summary.test.mjs": "Append the repeated accessor and Proxy observation coverage requested by issue #49; preserve all existing assertions and 26 cases."
       }
     }
+  },
+  "52": {
+    "scope": "Deliver only issue #52: append characterization tests for independent summary results across calls and its own OpenSpec plan. Preserve production bodies, exports, all 28 existing tests, accepted models, previous plans, tools, hooks, workflow/check policy and customizations. The trusted host supplies new plan metadata. No ProductShape apply or merge is authorized.",
+    "paths": [
+      "src/summary.test.mjs",
+      "openspec/changes/issue-52-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Append the result-isolation and empty-inventory tests requested by issue #52; preserve all existing assertions and 28 cases."
+      }
+    }
   }
 }
