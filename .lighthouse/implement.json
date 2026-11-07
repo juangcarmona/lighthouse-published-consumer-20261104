@@ -85,9 +85,9 @@
     }
   },
   "12": {
-    "scope": "Controlled owner-authorized citation maintenance on the existing product-backed PR #16 only. Add only current canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and cited-scope declarations to the four named issue #5 documents. The exact-tree guard freezes every other admitted source byte and Git executable mode at a396ea1, and preserves original prose and task state in those four documents. Do not change implementation, tests, product artifacts, workflows, check configuration, own issue #12 plan, or any other file. No product apply, new PR, external mutation or merge is granted. Existing model and framework protections remain mandatory. The supported repository path selector is paired with exhaustive protected inputs, four explicit correction reasons, the exact-tree check and independent provider validation; it is not general implementation authority.",
+    "scope": "Verification-only correction of the existing product-backed PR #16. Preserve all application, tests, accepted product intent, OpenSpec plans and adopter customizations. The trusted host may include only authenticated nonconflicting changes from the owner-admitted default branch before execution, then publish the independently checked tree with source and base as parents. No model file changes, new ProductShape apply, new PR or merge are authorized during this correction. All verification inputs remain frozen after trusted preparation; approval of the resulting exact head is separate.",
     "paths": [
-      "*"
+      "src/"
     ],
     "checks": [
       [
@@ -114,10 +114,10 @@
       [
         "node",
         "-e",
-        "const f=require('node:fs'),c=require('node:crypto');let a=[],cit=process.argv.slice(2).flatMap(x=>['<!-- '+x+' -->','**Product citation**: <!-- '+x+' -->']);function w(d=''){for(const n of f.readdirSync(d||'.').sort()){let p=d+n;if(/^(node_modules|\\.git)(\\/|$)|^\\.product\\/(cache|generated)(\\/|$)/.test(p))continue;let s=f.lstatSync(p);if(s.isDirectory())w(p+'/');else{let b=f.readFileSync(p);if(/^openspec\\/changes\\/issue-5-proposal\\/(?:(?:proposal|design|tasks)\\.md|specs\\/observation-summary\\/spec\\.md)$/.test(p))b=Buffer.from(b.toString().split('\\n').filter(l=>l.trim()&&l!=='<!-- pdac-scope: cited -->'&&!cit.includes(l)).join('\\n'));a.push([p,!!(s.mode&73),c.createHash('sha256').update(b).digest('hex')]);}}}w();let h=c.createHash('sha256').update(JSON.stringify(a)).digest('hex');if(process.argv[1]){if(h!==process.argv[1])throw Error('Only canonical citation metadata may change')}else console.log(h);",
-        "297091637dad41b6f151eaee01c4650d9620476b7ce20c82924dce99c0449abb",
-        "pdac:cite id=\"BR-SUMMARY-001\" digest=\"sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4\"",
-        "pdac:cite id=\"FR-SUMMARY-001\" digest=\"sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac\""
+        "const f=require('node:fs'),c=require('node:crypto'),x=new Set(process.argv.slice(2).flatMap(JSON.parse));let a=[];function w(d=''){for(const n of f.readdirSync(d||'.').sort()){let p=d+n;if(x.has(p)||/^(node_modules|\\.git)(\\/|$)|^\\.product\\/(cache|generated)(\\/|$)/.test(p))continue;let s=f.lstatSync(p);if(s.isDirectory())w(p+'/');else a.push([p,!!(s.mode&73),c.createHash('sha256').update(f.readFileSync(p)).digest('hex')]);}}w();let h=c.createHash('sha256').update(JSON.stringify(a)).digest('hex');if(process.argv[1]){if(h!==process.argv[1])throw Error('Admitted application, tests, product, plans or customizations changed')}else console.log(h);",
+        "97ba6b60412888b14d9ec97013360c37658f6690559f0a51104ecd96211cb915",
+        "[\".github/workflows/lighthouse-sdlc-apply-product-change.lock.yml\",\".github/workflows/lighthouse-sdlc-apply-product-change.md\",\".github/workflows/lighthouse-sdlc-apply-review.lock.yml\",\".github/workflows/lighthouse-sdlc-apply-review.md\",\".github/workflows/lighthouse-sdlc-implement.lock.yml\",\".github/workflows/lighthouse-sdlc-implement.md\",\".github/workflows/lighthouse-sdlc-integrate.lock.yml\",\".github/workflows/lighthouse-sdlc-integrate.md\",\".github/workflows/lighthouse-sdlc-product-change.lock.yml\",\".github/workflows/lighthouse-sdlc-product-change.md\",\".github/workflows/lighthouse-sdlc-propose.lock.yml\",\".github/workflows/lighthouse-sdlc-propose.md\",\".github/workflows/lighthouse-sdlc-refine.lock.yml\",\".github/workflows/lighthouse-sdlc-refine.md\",\".github/workflows/lighthouse-sdlc-review.lock.yml\",\".github/workflows/lighthouse-sdlc-review.md\",\".github/workflows/lighthouse-sdlc-router.yml\"]",
+        "[\".github/workflows/lighthouse-sdlc-triage.lock.yml\",\".github/workflows/lighthouse-sdlc-triage.md\",\".github/workflows/lighthouse-worker-maintenance.yml\",\".lighthouse/commands.json\",\".lighthouse/implement.json\",\".lighthouse/sdlc.json\",\".lighthouse/upgrade.json\",\"LIGHTHOUSE.md\",\"lighthouse.json\",\"package-lock.json\",\"package.json\",\"scripts/verify-delivery-profile.mjs\"]"
       ],
       [
         "npx",
@@ -173,12 +173,8 @@
         "src/",
         "tools/"
       ],
-      "corrections": {
-        "openspec/changes/issue-5-proposal/proposal.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation.",
-        "openspec/changes/issue-5-proposal/tasks.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation.",
-        "openspec/changes/issue-5-proposal/design.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation.",
-        "openspec/changes/issue-5-proposal/specs/observation-summary/spec.md": "Only add current provider-generated canonical BR-SUMMARY-001 / FR-SUMMARY-001 citations and pdac-scope: cited. The pinned exact-tree check rejects all changed original prose, requirements, scenarios, task state and every noncanonical annotation."
-      }
+      "corrections": {},
+      "synchronizeBase": true
     }
   }
 }
