@@ -1,0 +1,17 @@
+## What went well
+The private helper matches the accepted four-count contract, including strict comparisons and original property-read order (src/summary.mjs:1-17; design.md:19). All nine original tests and nine host command receipts passed in producer 42326351937. The same PR retained its approved product apply; integration receipt 42327472298 and exact-merge CI 42327888752 establish integration and subsequent verification separately.
+
+## What went wrong
+Earlier repository-wide citation gaps needed explicitly authorized four-document maintenance (PR #16 reviews 5797889848 / 5798132380). The original issue-12 task snapshot still says citations are blocked (tasks.md:19), while later receipts show the correction. The retained integration report combines a merged outcome with pre-merge assessment prose. These are metadata/reporting continuity gaps, not established application defects. Four low-severity audit findings remain untriaged in the supplied installation output. No recurrence across work items is established by the repeated verification attempts on this one PR.
+
+## Start doing
+Maintainer: annotate superseded plan-state statements in a separately reviewed documentation change, linking current evidence without removing prior failure history. SDLC report owner: keep assessment-time and publisher-time facts explicitly separated. Dependency maintainer: triage the retained low-severity audit summary before proposing any scoped update.
+
+## Stop doing
+Do not read an old blocker as a current failed check, count unavailable/skipped checks as passes, or describe historical controls as rerun on a newer SDK. Do not treat a green assessment as proof of merge or as new permission to apply product changes.
+
+## Improvement candidates
+- **Citation compatibility preflight — owner: ProductShape/OpenSpec integration maintainer.** Observed failure: four older planning documents blocked repository-wide citation verification; PR #16 reviews 5797889848 / 5798132380 document the metadata carrier issue. Smallest guard: a cross-provider fixture for current citations that also preserves parsed OpenSpec requirements and scenarios. Reproduce with the pre-correction four-document fixture, including plain comment placement near the requirement-length boundary; establish the expected failure before checking the supported Product citation metadata form and unchanged semantic delta. Requires its own review and regression evidence, not implementation in this stage.
+- **Temporal report clarity — owner: SDLC report maintainer, with repository maintainer for task notes.** Observed failure: integration:42327472298:1 says both merged and no merge has occurred; tasks.md:19 retains a superseded blocker. Smallest guard: separate immutable assessment text from later receipt facts and add an explicit superseded-by evidence link to historical blocker snapshots. Reproduce using this retained integration report plus the later passing CI receipt; first show the ambiguous output, then assert clear assessment/merge/post-merge sections without deleting the original failure evidence. Provider-owned guidance or report changes require separate review and regression proof.
+
+PRODUCT103 is explicitly owner-accepted, not a new actor-model requirement. No source defect was established; no timing, cost or recurrence measurement is inferred. Follow-ups remain recorded on this review of PR #16; no new issue, permission or delivery stage was created.

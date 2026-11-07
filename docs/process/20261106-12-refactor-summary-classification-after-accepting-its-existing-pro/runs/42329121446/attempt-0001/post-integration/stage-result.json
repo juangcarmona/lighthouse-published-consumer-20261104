@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "runId": "983bccb89fcc1dae39f5e52b7387b5eb492c7bcccea24685a08d7cb8d83a14b9",
+  "stage": "review",
+  "gate": null,
+  "status": "passed",
+  "evidence": [
+    {
+      "id": "source-contract-review",
+      "status": "passed",
+      "source": "/workspace/src/summary.mjs:1-17",
+      "reason": "One module-private classifier retains ordered strict comparisons, including the second property read on a non-passed observation. The sole export, count initialization, forward traversal and input preservation match the accepted contract and nine public tests. No new validation, normalization, dependency or I/O was introduced."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:1",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Host-authenticated dependency installation succeeded; four low-severity audit findings are retained separately, not erased by exit code zero."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:2",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Preflight, delivery profile and all nine original tests passed at accepted head b66ff68180c2399fb66ce8ce5252c8d10691c8d2; test inspection covers exact counts, fallback, empty input, identities, order and frozen inputs."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:3",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Manifest, repository boundaries and managed projection verification passed."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:4",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Repository guard passed."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:5",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Pinned domain hash verification passed, preserving admitted application, tests, product, plans and customizations through trusted base preparation."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:6",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Citation summary reports 15 current citations, zero unclassified documents and zero errors. Retained structured evidence supports the issue-12 document rows despite excerpt truncation. PRODUCT103 remains nonblocking and owner-accepted."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:7",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Strict validation of issue-5 planning passed after bounded citation maintenance."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:8",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Strict issue-12 validation passed; skip_specs explicitly represents no behavioral delta, consistent with the inspected source."
+    },
+    {
+      "id": "implementation:42326351937:1:c0e76ecf88d2e42d46ebdd70c3667a63447d1a2968500281d011c4f639574578:9",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42326351937/attempts/1",
+      "reason": "Additional pinned OpenSpec 1.15.0 strict validation passed."
+    },
+    {
+      "id": "github-check:128264796491",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42327101755/job/128264796491",
+      "reason": "Required repository check from App 15368 passed on the accepted PR head."
+    },
+    {
+      "id": "integration:42327472298:1",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/blob/7ce469cab0974f4714df9aea8959dbc6e6f8ca3a/docs/process/20261106-12-refactor-summary-classification-after-accepting-its-existing-pro/runs/42327472298/attempt-0001/post-integration/report.md",
+      "reason": "Host-verified retained receipt binds issue 12, PR 16, accepted head, intent/policy/review/file fingerprints and explicit merge:true owner authorization to merged revision 3b78c94948c2f52acb3c38d0d6ddf6c563f9be9a. Receipt, not assessment prose, establishes merge."
+    },
+    {
+      "id": "github-check:128267340494",
+      "status": "passed",
+      "source": "https://github.com/juangcarmona/lighthouse-published-consumer-20261104/actions/runs/42327888752/job/128267340494",
+      "reason": "Authenticated required repository check and configured post-merge ci.yml passed at the exact merged revision. This resolves the integration-time missing observation without rewriting its history."
+    },
+    {
+      "id": "guidance-and-finalization-review",
+      "status": "passed",
+      "source": "/workspace/.lighthouse/github.json",
+      "reason": "Compared affected root/provider guidance, consumer contract, issue-12 plans and issue-5 citation metadata with host policy and finalization observations. Host-specific integration adoption is distinguished from generated baseline projection. Intended final labels and closure follow supplied host policy, not a new permission grant."
+    }
+  ],
+  "missingEvidence": [],
+  "unavailableChecks": [],
+  "pendingReview": [],
+  "nextAction": "Trusted publisher: revalidate current authority, checks and reservation, publish this review on the adopted evidence branch, then apply the declared issue closure and final-label cleanup.",
+  "output": {
+    "summary": "Accepted delivery reviewed: private classification preserves the existing summary contract, the same product-backed PR was integrated with explicit owner authorization, and authenticated post-merge CI passed. No current-stage blocker or application source defect was established.",
+    "identity": {
+      "repository": "juangcarmona/lighthouse-published-consumer-20261104",
+      "issue": 12,
+      "pr": 16,
+      "acceptedHead": "b66ff68180c2399fb66ce8ce5252c8d10691c8d2",
+      "mergedRevision": "3b78c94948c2f52acb3c38d0d6ddf6c563f9be9a",
+      "intent": "41e7bf7633eff6b384f0716b23ac5a11803c390b444c0b88252b96d1c53047e3",
+      "policy": "42d0b55be2283eeedbca4b4476185c583b3f890bb7f011273f3ebf161d24a589",
+      "integrationRecordSha256": "72e6421d504645676553eec61703df4047acfabc966dc86a21bdf8e0e2d0907c",
+      "provenance": "Host-supplied identities and authenticated observations; no independent GitHub or git identity verification was performed by this engine. Current dispatch is review-only with merge:false."
+    },
+    "acceptance": {
+      "behavior": "Source matches BR-SUMMARY-001 and FR-SUMMARY-001. The nine unchanged public tests are adequate for this extraction; no additional export or test-only helper is needed.",
+      "productContinuity": "Applied CHG-ISSUE-12-SUMMARY, retained proposal/checkpoint and implementation markers preserve issue 12 / PR 16 continuity. Final owner acceptance and the prior authorized integration receipt accept that single historical apply; dismissed reviews are not reused as present authorization.",
+      "scope": "Sixteen host-listed changed paths comprise the private source extraction, product formalization and issue-12 plan plus four explicitly owner-authorized issue-5 citation corrections. No test, hook or CI file is in this delivery's changed-path list. Later verification-only policy is not retroactively treated as the original implementation scope.",
+      "historicalControls": "Owner review 5809380096 accepts revoked-approval run 42176650195, stale-source run 42169743130, SDLC 0.20.9 runtime controls 42190185606 / 42190538725 / 42190984085, and earlier-delivery close/reconciliation runs 42135724163 / 42136734596 at their recorded versions. Raw historical artifacts and the owner-reported 65-case independent contract test are not reproduced here or represented as new authenticated command receipts.",
+      "postMerge": "ci.yml run 42327888752 passed on 3b78c94948c2f52acb3c38d0d6ddf6c563f9be9a. Integration-time missing CI was missing verification, not a failed check. Optional skipped routing/maintenance jobs are not work-item or forge gates."
+    },
+    "findings": [
+      {
+        "id": "review-12-product103",
+        "classification": "accepted",
+        "kind": "product-model limitation",
+        "owner": "juangcarmona, product owner",
+        "finding": "FR-SUMMARY-001 has no actor path. PRODUCT103 is a disclosed nonblocking warning for the bounded technical contract, not an application defect or authority to invent personas.",
+        "followUpReference": "PR #16 owner review 5809380096; docs/product/model/requirements/functional/fr-summary-001.md"
+      },
+      {
+        "id": "review-12-citation-maintenance",
+        "classification": "fixed",
+        "kind": "planning metadata gap",
+        "owner": "juangcarmona, repository maintainer",
+        "finding": "Earlier repository-wide citation verification was blocked by four issue-5 documents. Explicit bounded maintenance added canonical metadata; current receipt reports 15 current citations and strict validation succeeds. This did not require changing summary behavior.",
+        "followUpReference": "PR #16 reviews 5797889848 / 5798132380; producer 42326351937 checks 6 and 7"
+      },
+      {
+        "id": "review-12-continuity-notes",
+        "classification": "deferred",
+        "kind": "documentation/process gap",
+        "owner": "juangcarmona, repository maintainer; SDLC report maintainer",
+        "finding": "Issue-12 tasks.md:16-19 retains the earlier five-command/citation-blocked snapshot, and design.md:27 retains the original three-path boundary. Later owner-authorized maintenance and current receipts supersede those delivery-state statements. The integration report also combines a merged outcome with pre-merge assessment prose. Preserve history but make temporal scope explicit; these are not current failed checks.",
+        "followUpReference": "PR #16 review record review-12-continuity-notes; openspec/changes/issue-12-proposal/tasks.md:16-19; design.md:27; integration:42327472298:1"
+      },
+      {
+        "id": "review-12-audit",
+        "classification": "deferred",
+        "kind": "dependency triage gap",
+        "owner": "juangcarmona, dependency maintainer",
+        "finding": "Installation reports four low-severity vulnerabilities. Package identities, exploitability and remediation evidence are not supplied; no vulnerability was investigated or established as introduced by this refactor. No dependency update or automatic force fix is authorized.",
+        "followUpReference": "PR #16 review record review-12-audit; producer 42326351937 check 1"
+      }
+    ],
+    "guidanceReview": {
+      "reviewed": [
+        "AGENTS.md",
+        "LIGHTHOUSE.md",
+        "lighthouse.json",
+        "docs/consumer-contract.md",
+        "docs/product/README.md",
+        ".lighthouse/implement.json",
+        ".lighthouse/github.json",
+        "openspec/changes/issue-12-proposal/",
+        "openspec/changes/issue-12-product-change/product-change/change.md",
+        "openspec/changes/issue-5-proposal/specs/observation-summary/spec.md",
+        ".github/workflows/ci.yml"
+      ],
+      "decision": "LIGHTHOUSE.md reflects lighthouse.json's unadopted baseline integration, whereas the consumer-owned contract and host continuation describe this registry-only product-backed qualification. That intentional host-specific distinction does not alone establish managed projection drift. Provider guidance's human acceptance requirement is satisfied by explicit owner acceptance followed by authorized trusted publication, not a claim that the bot is a human. No provider-policy rewrite is proposed here. Historical planning-state ambiguity is recorded separately.",
+      "limitations": "CodeGraph context was unavailable; direct source inspection completed the review. No commands or new tests were executed by this engine. No release, rollback or visual/UI acceptance is implied."
+    },
+    "finalization": {
+      "observedIssue": {
+        "state": "open",
+        "labels": [
+          "pr-ready",
+          "triaged"
+        ]
+      },
+      "observedPullRequest": {
+        "state": "closed",
+        "merged": true,
+        "labels": []
+      },
+      "intendedTransition": {
+        "add": [],
+        "remove": [
+          "waiting-review",
+          "ready",
+          "pr-draft",
+          "pr-ready",
+          "integrate",
+          "review"
+        ],
+        "closeIssue": true,
+        "preserveIssueLabels": [
+          "triaged"
+        ],
+        "pullRequestLabels": "preserve"
+      },
+      "executor": "Trusted publisher after fresh current-stage validation; host cleanup releases agent-working reservation for every outcome. These effects have not been performed by this engine."
+    },
+    "retrospective": "## What went well\nThe private helper matches the accepted four-count contract, including strict comparisons and original property-read order (src/summary.mjs:1-17; design.md:19). All nine original tests and nine host command receipts passed in producer 42326351937. The same PR retained its approved product apply; integration receipt 42327472298 and exact-merge CI 42327888752 establish integration and subsequent verification separately.\n\n## What went wrong\nEarlier repository-wide citation gaps needed explicitly authorized four-document maintenance (PR #16 reviews 5797889848 / 5798132380). The original issue-12 task snapshot still says citations are blocked (tasks.md:19), while later receipts show the correction. The retained integration report combines a merged outcome with pre-merge assessment prose. These are metadata/reporting continuity gaps, not established application defects. Four low-severity audit findings remain untriaged in the supplied installation output. No recurrence across work items is established by the repeated verification attempts on this one PR.\n\n## Start doing\nMaintainer: annotate superseded plan-state statements in a separately reviewed documentation change, linking current evidence without removing prior failure history. SDLC report owner: keep assessment-time and publisher-time facts explicitly separated. Dependency maintainer: triage the retained low-severity audit summary before proposing any scoped update.\n\n## Stop doing\nDo not read an old blocker as a current failed check, count unavailable/skipped checks as passes, or describe historical controls as rerun on a newer SDK. Do not treat a green assessment as proof of merge or as new permission to apply product changes.\n\n## Improvement candidates\n- **Citation compatibility preflight — owner: ProductShape/OpenSpec integration maintainer.** Observed failure: four older planning documents blocked repository-wide citation verification; PR #16 reviews 5797889848 / 5798132380 document the metadata carrier issue. Smallest guard: a cross-provider fixture for current citations that also preserves parsed OpenSpec requirements and scenarios. Reproduce with the pre-correction four-document fixture, including plain comment placement near the requirement-length boundary; establish the expected failure before checking the supported Product citation metadata form and unchanged semantic delta. Requires its own review and regression evidence, not implementation in this stage.\n- **Temporal report clarity — owner: SDLC report maintainer, with repository maintainer for task notes.** Observed failure: integration:42327472298:1 says both merged and no merge has occurred; tasks.md:19 retains a superseded blocker. Smallest guard: separate immutable assessment text from later receipt facts and add an explicit superseded-by evidence link to historical blocker snapshots. Reproduce using this retained integration report plus the later passing CI receipt; first show the ambiguous output, then assert clear assessment/merge/post-merge sections without deleting the original failure evidence. Provider-owned guidance or report changes require separate review and regression proof.\n\nPRODUCT103 is explicitly owner-accepted, not a new actor-model requirement. No source defect was established; no timing, cost or recurrence measurement is inferred. Follow-ups remain recorded on this review of PR #16; no new issue, permission or delivery stage was created."
+  }
+}
