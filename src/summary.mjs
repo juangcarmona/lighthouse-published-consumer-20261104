@@ -1,5 +1,5 @@
-function classify(check) {
-  switch (check.status) {
+function classify(status) {
+  switch (status) {
     case "passed":
       return "passed";
     case "failed":
@@ -12,7 +12,8 @@ function classify(check) {
 export function summarize(checks) {
   const summary = { total: checks.length, passed: 0, failed: 0, unavailable: 0 };
   for (const check of checks) {
-    summary[classify(check)] += 1;
+    const status = check.status;
+    summary[classify(status)] += 1;
   }
   return summary;
 }

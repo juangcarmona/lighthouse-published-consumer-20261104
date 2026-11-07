@@ -100,3 +100,67 @@ test("preserves frozen prototype-key and boxed-string observations in a mixed in
     assert.strictEqual(check.details.notes, originalNotes[index]);
   });
 });
+
+for (const kind of ["accessor", "Proxy"]) {
+  test(`reads each ${kind} status exactly once in inventory order`, () => {
+    const statuses = ["passed", "failed", "unknown", undefined];
+    const reads = statuses.map(() => 0);
+    const trace = [];
+    const details = statuses.map(() => Object.freeze({ notes: Object.freeze(["original"]) }));
+    const targets = statuses.map((status, index) => {
+      const read = () => {
+        reads[index] += 1;
+        trace.push(index);
+        assert.equal(reads[index], 1, `status ${index} must not be read twice`);
+        return status;
+      };
+      if (kind === "accessor") {
+        return Object.freeze({ get status() { return read(); }, details: details[index] });
+      }
+      const target = Object.freeze(index === 3
+        ? { details: details[index] }
+        : { status, details: details[index] });
+      return new Proxy(target, {
+        get(target, property, receiver) {
+          if (property === "status") read();
+          return Reflect.get(target, property, receiver);
+        }
+      });
+    });
+    const checks = Object.freeze([...targets]);
+    const descriptors = targets.map(target => Object.getOwnPropertyDescriptors(target));
+
+    assert.deepEqual(summarize(checks), { total: 4, passed: 1, failed: 1, unavailable: 2 });
+    assert.deepEqual(reads, [1, 1, 1, 1]);
+    assert.deepEqual(trace, [0, 1, 2, 3]);
+    checks.forEach((check, index) => {
+      assert.strictEqual(check, targets[index]);
+      assert.strictEqual(check.details, details[index]);
+      assert.strictEqual(check.details.notes, details[index].notes);
+      assert.deepEqual(Object.getOwnPropertyDescriptors(check), descriptors[index]);
+      assert.ok(Object.isFrozen(check));
+    });
+    assert.ok(Object.isFrozen(checks));
+  });
+}
+
+for (const status of [Symbol("passed"), Symbol("failed"), 0n, 1n, -1n]) {
+  test(`counts ${String(status)} as unavailable alongside primitive controls`, () => {
+    const details = Object.freeze({ notes: Object.freeze(["original"]) });
+    const checks = Object.freeze([status, "passed", "failed"].map(value => Object.freeze({
+      status: value, details
+    })));
+    const originalOrder = [...checks];
+
+    assert.deepEqual(summarize(checks), { total: 3, passed: 1, failed: 1, unavailable: 1 });
+    assert.strictEqual(checks[0].status, status);
+    assert.strictEqual(checks[1].status, "passed");
+    assert.strictEqual(checks[2].status, "failed");
+    checks.forEach((check, index) => {
+      assert.strictEqual(check, originalOrder[index]);
+      assert.strictEqual(check.details, details);
+      assert.strictEqual(check.details.notes, details.notes);
+      assert.deepEqual(check.details.notes, ["original"]);
+    });
+  });
+}
