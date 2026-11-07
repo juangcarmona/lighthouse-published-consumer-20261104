@@ -1,13 +1,17 @@
+function classify(check) {
+  if (check.status === "passed") {
+    return "passed";
+  } else if (check.status === "failed") {
+    return "failed";
+  } else {
+    return "unavailable";
+  }
+}
+
 export function summarize(checks) {
   const summary = { total: checks.length, passed: 0, failed: 0, unavailable: 0 };
   for (const check of checks) {
-    if (check.status === "passed") {
-      summary.passed += 1;
-    } else if (check.status === "failed") {
-      summary.failed += 1;
-    } else {
-      summary.unavailable += 1;
-    }
+    summary[classify(check)] += 1;
   }
   return summary;
 }

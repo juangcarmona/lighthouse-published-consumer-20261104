@@ -1,5 +1,9 @@
 # Proposal
 
+<!-- pdac-scope: cited -->
+<!-- pdac:cite id="BR-SUMMARY-001" digest="sha256:a21b966ff4747da8ee35ee1366ffeac16f6a6fa3da508ca04d3f0b31380677c4" -->
+<!-- pdac:cite id="FR-SUMMARY-001" digest="sha256:d422a7f0e7294b9ffbb099871260c2ac5c287609036e808fc160786f294971ac" -->
+
 ## Why
 
 The consumer reports only total and passed observations, hiding the distinction between failed and unavailable evidence. Issue #5 requires callers to see both without treating unknown observations as successes.
