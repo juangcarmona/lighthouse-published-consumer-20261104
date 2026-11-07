@@ -164,3 +164,53 @@ for (const status of [Symbol("passed"), Symbol("failed"), 0n, 1n, -1n]) {
     });
   });
 }
+
+for (const kind of ["accessor", "Proxy"]) {
+  test(`preserves an abrupt ${kind} status failure without reading later observations`, () => {
+    const failure = new Error("status read failed");
+    const statuses = ["passed", "failed", "unknown", "passed"];
+    const reads = statuses.map(() => 0);
+    const trace = [];
+    const details = statuses.map(() => Object.freeze({ notes: Object.freeze(["original"]) }));
+    const observations = statuses.map((status, index) => {
+      const read = () => {
+        reads[index] += 1;
+        trace.push(index);
+        if (index === 1) throw failure;
+        return status;
+      };
+      if (kind === "accessor") {
+        return Object.freeze({ get status() { return read(); }, details: details[index] });
+      }
+      return new Proxy(Object.freeze({ status, details: details[index] }), {
+        get(target, property, receiver) {
+          if (property === "status") read();
+          return Reflect.get(target, property, receiver);
+        }
+      });
+    });
+    const checks = Object.freeze([...observations]);
+    const descriptors = observations.map(observation => Object.getOwnPropertyDescriptors(observation));
+
+    assert.throws(() => summarize(checks), error => {
+      assert.strictEqual(error, failure);
+      return true;
+    });
+    assert.deepEqual(reads, [1, 1, 0, 0]);
+    assert.deepEqual(trace, [0, 1]);
+    assert.ok(Object.isFrozen(checks));
+    assert.equal(checks.length, observations.length);
+    checks.forEach((check, index) => {
+      assert.strictEqual(check, observations[index]);
+      assert.deepEqual(Object.getOwnPropertyDescriptors(check), descriptors[index]);
+      assert.ok(Object.isFrozen(check));
+      assert.strictEqual(check.details, details[index]);
+      assert.strictEqual(check.details.notes, details[index].notes);
+      assert.deepEqual(details[index].notes, ["original"]);
+      assert.ok(Object.isFrozen(details[index]));
+      assert.ok(Object.isFrozen(details[index].notes));
+    });
+    assert.deepEqual(reads, [1, 1, 0, 0]);
+    assert.deepEqual(trace, [0, 1]);
+  });
+}
