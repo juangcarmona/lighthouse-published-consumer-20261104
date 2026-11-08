@@ -268,12 +268,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
-      - name: Load isolated completion acceptance control
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ github.sha }}
-          persist-credentials: false
-          path: .fixture
       - name: Record the authorized request
         id: request
         env:
@@ -292,17 +286,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           LIGHTHOUSE_DISPATCH_COMMENT: ${{ steps.request.outputs.comment }}
-          LIGHTHOUSE_ACCEPTANCE_567_ISSUE: ${{ vars.LIGHTHOUSE_ACCEPTANCE_567_ISSUE }}
-          LIGHTHOUSE_ACCEPTANCE_GATE_LOG: ${{ runner.temp }}/567-transport.jsonl
-        run: node --import "$GITHUB_WORKSPACE/.fixture/scripts/acceptance-567-preload.mjs" .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs dispatch-send
-      - name: Preserve controlled transport timing
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: lighthouse-567-transport-${{ github.run_id }}
-          path: ${{ runner.temp }}/567-transport.jsonl
-          if-no-files-found: ignore
-          retention-days: 14
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs dispatch-send
       - name: Observe workflow telemetry
         if: always()
         continue-on-error: true
