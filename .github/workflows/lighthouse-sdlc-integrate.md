@@ -27,7 +27,6 @@ runs-on: [self-hosted, linux, lighthouse-workflow]
 runs-on-slim: ubuntu-24.04
 timeout-minutes: 15
 env:
-  LIGHTHOUSE_ENGINE_CONFIG: ${{ inputs.issue == '59' && vars.LIGHTHOUSE_ACCEPTANCE_541_ISSUE == '59' && '/home/juan/.local/share/lighthouse-runtime/home-published-consumer/541-acceptance-engine.json' || '/home/juan/.local/share/lighthouse-runtime/engine.json' }}
   LIGHTHOUSE_RECOVERY_ENABLED: ${{ vars.LIGHTHOUSE_RECOVERY_ENABLED }}
   LIGHTHOUSE_MAINTENANCE_ISSUES: ${{ vars.LIGHTHOUSE_MAINTENANCE_ISSUES }}
   LIGHTHOUSE_STAGE: integrate
