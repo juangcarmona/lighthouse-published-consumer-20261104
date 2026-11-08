@@ -712,5 +712,64 @@
         "src/summary.test.mjs": "Append only the four-status callable/bigint characterization required by issue #68. Preserve the complete prior 32-test prefix and all production code."
       }
     }
+  },
+  "72": {
+    "scope": "Deliver only issue #72: append one opaque-proxy/null-prototype status characterization test and its own plan. Preserve all 33 existing tests byte-for-byte, production code, accepted models, previous plans, tooling, hooks, check policies and customizations. The host owns OpenSpec metadata. No ProductShape apply is authorized.",
+    "paths": [
+      "src/summary.test.mjs",
+      "openspec/changes/issue-72-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Append only the four-status opaque-proxy/null-prototype characterization required by issue #72. Preserve the complete prior 33-test prefix and all production code."
+      }
+    }
   }
 }
