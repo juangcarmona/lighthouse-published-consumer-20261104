@@ -498,3 +498,32 @@ test("preserves frozen callable and bigint statuses without invocation or coerci
   assert.equal(invocationCalls, 0);
   assert.equal(conversionCalls, 0);
 });
+
+test("preserves frozen opaque-proxy and null-prototype statuses without inspection or coercion", () => {
+  const propertyAccesses = [];
+  const opaqueStatus = Object.freeze(new Proxy({}, {
+    get(target, property) {
+      propertyAccesses.push(property);
+      throw new Error("opaque status properties must not be accessed");
+    }
+  }));
+  const nullPrototypeStatus = Object.freeze(Object.create(null));
+  const statuses = ["passed", "failed", opaqueStatus, nullPrototypeStatus];
+  const checks = Object.freeze(statuses.map(status => Object.freeze({ status })));
+  const observations = [...checks];
+
+  assert.deepEqual(summarize(checks), { total: 4, passed: 1, failed: 1, unavailable: 2 });
+  assert.equal(propertyAccesses.length, 0);
+  assert.equal(checks.length, 4);
+  assert.ok(Object.isFrozen(checks));
+  checks.forEach((check, index) => {
+    assert.strictEqual(check, observations[index]);
+    assert.strictEqual(check.status, statuses[index]);
+    assert.ok(Object.isFrozen(check));
+  });
+  assert.ok(Object.isFrozen(opaqueStatus));
+  assert.ok(Object.isFrozen(nullPrototypeStatus));
+  assert.strictEqual(Object.getPrototypeOf(nullPrototypeStatus), null);
+  assert.deepEqual(Object.getOwnPropertyDescriptors(nullPrototypeStatus), {});
+  assert.equal(propertyAccesses.length, 0);
+});
