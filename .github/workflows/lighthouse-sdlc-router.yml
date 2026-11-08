@@ -13,7 +13,7 @@ on:
   pull_request:
     types: [ready_for_review, converted_to_draft, closed, reopened]
   workflow_run:
-    workflows: ["refine","integrate","unattended","triage","propose","apply review","implement","product-change","apply-product-change"]
+    workflows: ["refine","integrate","unattended","triage","propose","apply review","implement","product-change","apply-product-change","Consumer verification"]
     types: [completed]
   schedule:
     - cron: '*/5 * * * *'
@@ -262,18 +262,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
-      - name: Load the isolated acceptance controller
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ github.sha }}
-          persist-credentials: false
-          path: .fixture
-      - name: Hold the issue 59 continuation before preparation
-        env:
-          GH_TOKEN: ${{ github.token }}
-          LIGHTHOUSE_ACCEPTANCE_GATE_LOG: ${{ runner.temp }}/541-gates.jsonl
-          LIGHTHOUSE_ACCEPTANCE_541_ISSUE: ${{ vars.LIGHTHOUSE_ACCEPTANCE_541_ISSUE }}
-        run: node .fixture/scripts/acceptance-541-gates.mjs before-preparation
       - name: Record the authorized request
         id: request
         env:
@@ -292,17 +280,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           LIGHTHOUSE_DISPATCH_COMMENT: ${{ steps.request.outputs.comment }}
-          LIGHTHOUSE_ACCEPTANCE_GATE_LOG: ${{ runner.temp }}/541-gates.jsonl
-          LIGHTHOUSE_ACCEPTANCE_541_ISSUE: ${{ vars.LIGHTHOUSE_ACCEPTANCE_541_ISSUE }}
-        run: node --import "$GITHUB_WORKSPACE/.fixture/scripts/acceptance-541-preload.mjs" .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs dispatch-send
-      - name: Retain the isolated timing observations
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: lighthouse-541-gates-${{ github.run_id }}
-          path: ${{ runner.temp }}/541-gates.jsonl
-          retention-days: 14
-          if-no-files-found: ignore
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs dispatch-send
       - name: Observe workflow telemetry
         if: always()
         continue-on-error: true
