@@ -1,0 +1,14 @@
+## What went well
+The single appended test checks the exact four counters, zero opaque-proxy reads and preserved frozen identities (src/summary.test.mjs:502-529). Six authenticated candidate receipts passed, including all 34 tests. The retained integration receipt proves the merge; post-merge CI 42470652745 now supplies evidence that was missing in the historical report. Native stale admission rejected the old revision before agent/publisher execution, and completed automatic bot maintenance linked one bounded review retry while reusing merge and CI.
+
+## What went wrong
+Baseline byte-preservation evidence required supplemental reviews before exact-head manual acceptance (PR #74 reviews 5817457231 and 5817476574). The engine could not execute the supplemental command; this was an evidence-transport gap, not a failed prefix comparison. No delivered source defect or affected-guidance conflict was established. Existing nonblocking observations are PRODUCT103 actor reachability and four low-severity dependency advisories; their broader impact is unknown (R3/R4). Retries of this issue do not establish recurrence across work items.
+
+## Start doing
+Implementation-evidence maintainers should consider packaging preservation evidence with the initial receipts (G1). Repository product/dependency owners should triage R3/R4 separately, without expanding this delivery. Continue naming expected negative-control failures separately from product-check failures and recording actual callback event/actor identities.
+
+## Stop doing
+Do not request execution capabilities absent from the assessment engine, treat owner-accepted manual evidence as an engine command receipt, infer scheduled execution from a workflow_dispatch bot callback, or describe current publication as complete before its host receipt exists.
+
+## Improvement candidates
+**G1 — preservation receipt (deferred; owner: Lighthouse implementation-evidence maintainer; reference: R2 and Lighthouse #567).** Observed failure: the first evidence path did not make the byte-prefix criterion independently consumable here; supplemental review 5817476574 records the manual resolution. Smallest useful guard: retain a host-produced baseline/head/path-bound byte-prefix result and artifact digest with candidate receipts, without changing approval authority. Reproduce before correction using this accepted candidate and an assessment engine without shell execution: show that the original receipt set alone lacks that result. In a separately reviewed regression, require the corrected evidence path to accept the original pair and reject a changed prefix, wrong admitted head and tampered proof/result. The owner's prior negative controls are reported manual evidence, not regression proof for this proposed guard. No guard, policy or provider-guidance change is made or approved in this stage.
