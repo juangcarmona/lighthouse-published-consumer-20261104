@@ -66,7 +66,7 @@ steps:
     with:
       node-version: 24
   - name: Install the published Lighthouse harness
-    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.11
+    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.1
   - name: Load the authorized product request
     uses: actions/download-artifact@v8
     with:
@@ -112,7 +112,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.11
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.1
       - name: Check out the adopter's current product source
         uses: actions/checkout@v5
         with:
@@ -200,7 +200,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.21.11
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.1
       - uses: actions/setup-node@v5
         with:
           node-version: 24

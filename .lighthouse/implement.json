@@ -653,5 +653,64 @@
         "src/summary.test.mjs": "Append only the exact four-status symbol/object characterization required by issue #59. Preserve the complete prior 31-test prefix and every production function."
       }
     }
+  },
+  "68": {
+    "scope": "Deliver only issue #68: append one callable/bigint status characterization test and its own plan. Preserve all 32 existing tests byte-for-byte, production code, accepted models, previous plans, tooling, hooks, check policies and customizations. The host owns OpenSpec metadata. No ProductShape apply is authorized.",
+    "paths": [
+      "src/summary.test.mjs",
+      "openspec/changes/issue-68-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Append only the four-status callable/bigint characterization required by issue #68. Preserve the complete prior 32-test prefix and all production code."
+      }
+    }
   }
 }
