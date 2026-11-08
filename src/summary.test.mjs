@@ -430,3 +430,34 @@ test("preserves frozen numeric, boolean and nullish statuses in a mixed inventor
     assert.ok(Object.isFrozen(check.details.notes));
   });
 });
+
+test("preserves frozen symbol and throwing-object statuses without coercion", () => {
+  let conversionCalls = 0;
+  const objectStatus = Object.freeze({
+    toString() {
+      conversionCalls += 1;
+      throw new Error("status must not be converted to a string");
+    }
+  });
+  const statuses = ["passed", "failed", Symbol("passed"), objectStatus];
+  const checks = Object.freeze(statuses.map(status => Object.freeze({ status })));
+  const observations = [...checks];
+  const inventoryDescriptors = Object.getOwnPropertyDescriptors(checks);
+  const descriptors = checks.map(check => Object.getOwnPropertyDescriptors(check));
+  const statusDescriptors = Object.getOwnPropertyDescriptors(objectStatus);
+
+  assert.deepEqual(summarize(checks), { total: 4, passed: 1, failed: 1, unavailable: 2 });
+  assert.equal(conversionCalls, 0);
+  assert.equal(checks.length, 4);
+  assert.ok(Object.isFrozen(checks));
+  assert.deepEqual(Object.getOwnPropertyDescriptors(checks), inventoryDescriptors);
+  checks.forEach((check, index) => {
+    assert.strictEqual(check, observations[index]);
+    assert.strictEqual(check.status, statuses[index]);
+    assert.deepEqual(Object.getOwnPropertyDescriptors(check), descriptors[index]);
+    assert.ok(Object.isFrozen(check));
+  });
+  assert.ok(Object.isFrozen(objectStatus));
+  assert.deepEqual(Object.getOwnPropertyDescriptors(objectStatus), statusDescriptors);
+  assert.equal(conversionCalls, 0);
+});
