@@ -825,12 +825,15 @@
         "docs/consumer-contract.md",
         "tools/existing-tool.mjs",
         "scripts/verify-delivery-profile.mjs",
-        "src/summary.mjs",
-        "src/format-summary.mjs"
+        "src/summary.mjs"
       ],
       "corrections": {
         "src/summary.test.mjs": "Append only the inherited non-enumerable primitive-status test required by issue #77. Preserve every existing byte as a prefix and all original assertions; do not alter production modules."
       }
+    },
+    "seed": {
+      "base": "24e305ecb48bd57a584f2c41e3453b653be464e5",
+      "head": "d56fce4661ad31ed20926cc9409b32cb28de4e55"
     }
   }
 }

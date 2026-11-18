@@ -9,13 +9,13 @@
   },
   "profiles": [],
   "integrations": {
-    "productShape": "0.23.0",
+    "productShape": "0.26.1",
     "arcShape": "0.4.0"
   },
   "packages": {
     "sdlc": {
       "name": "@juangcarmona/lighthouse-sdlc",
-      "version": "0.21.11"
+      "version": "0.30.1"
     }
   },
   "managed": [
