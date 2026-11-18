@@ -547,3 +547,33 @@ test("counts frozen own non-enumerable primitive statuses without changing descr
   }
   assert.equal(Object.isFrozen(inventory), true);
 });
+
+test("counts frozen inherited non-enumerable primitive statuses without changing prototypes", () => {
+  const statuses = ["passed", "failed", "unknown"];
+  const prototypes = statuses.map(status => Object.freeze(Object.defineProperty({}, "status", {
+    value: status, enumerable: false, writable: false, configurable: false
+  })));
+  const observations = prototypes.map(prototype => Object.freeze(Object.create(prototype)));
+  const inventory = Object.freeze([...observations]);
+  const descriptors = prototypes.map(prototype => Object.getOwnPropertyDescriptor(prototype, "status"));
+
+  assert.deepEqual(summarize(inventory), { total: 3, passed: 1, failed: 1, unavailable: 1 });
+
+  assert.equal(inventory.length, 3);
+  assert.equal(inventory.filter(observation => Object.hasOwn(observation, "status")).length, 0);
+  for (let index = 0; index < observations.length; index += 1) {
+    assert.strictEqual(inventory[index], observations[index]);
+    assert.strictEqual(Object.getPrototypeOf(inventory[index]), prototypes[index]);
+    assert.equal(Object.hasOwn(inventory[index], "status"), false);
+    assert.strictEqual(inventory[index].status, statuses[index]);
+    const descriptor = Object.getOwnPropertyDescriptor(prototypes[index], "status");
+    assert.deepEqual(descriptor, descriptors[index]);
+    assert.strictEqual(descriptor.value, statuses[index]);
+    assert.equal(descriptor.enumerable, false);
+    assert.equal(descriptor.writable, false);
+    assert.equal(descriptor.configurable, false);
+    assert.equal(Object.isFrozen(inventory[index]), true);
+    assert.equal(Object.isFrozen(prototypes[index]), true);
+  }
+  assert.equal(Object.isFrozen(inventory), true);
+});
