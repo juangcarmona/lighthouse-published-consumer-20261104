@@ -22,7 +22,7 @@ on:
         required: true
         type: string
   needs: [prepare]
-if: needs.prepare.outputs.eligible == 'true'
+if: github.run_attempt == 1 && needs.prepare.outputs.eligible == 'true'
 runs-on: [self-hosted, linux, lighthouse-workflow]
 runs-on-slim: ubuntu-24.04
 timeout-minutes: 15
@@ -52,6 +52,7 @@ safe-outputs:
   report-incomplete: false
   threat-detection: false
   report-failure-as-issue: false
+  report-failed-jobs: false
   report-missing-tool: false
   report-missing-data: false
   noop:
@@ -69,7 +70,7 @@ steps:
     with:
       node-version: 24
   - name: Install the published Lighthouse harness
-    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.3
+    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.30.1
   - name: Load the authorized issue context
     uses: actions/download-artifact@v8
     with:
@@ -99,6 +100,7 @@ post-steps:
       retention-days: 14
 jobs:
   prepare:
+    if: github.run_attempt == 1
     outputs:
       eligible: ${{ steps.prepare.outputs.eligible }}
       revision: ${{ steps.prepare.outputs.revision }}
@@ -118,7 +120,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.3
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.30.1
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -165,7 +167,7 @@ jobs:
       cancel-in-progress: false
     name: Validate, publish and release
     needs: [prepare, agent]
-    if: always() && needs.prepare.result == 'success' && needs.prepare.outputs.eligible == 'true'
+    if: always() && github.run_attempt == 1 && needs.prepare.result == 'success' && needs.prepare.outputs.eligible == 'true'
     runs-on: ubuntu-24.04
     permissions:
       actions: write
@@ -181,7 +183,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.3
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.30.1
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -241,10 +243,6 @@ jobs:
             ${{ runner.temp }}/gh-aw/telemetry/export-health.json
           if-no-files-found: ignore
           retention-days: 14
-      - name: Retain integration in progress for the issue 46 continuation race
-        if: vars.LIGHTHOUSE_ACCEPTANCE_COMPLETION_DELAY == 'true' && inputs.issue == '46'
-        run: sleep 180
-
 ---
 
 # Integrate the accepted delivery

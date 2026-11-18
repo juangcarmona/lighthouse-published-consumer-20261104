@@ -771,5 +771,66 @@
         "src/summary.test.mjs": "Append only the four-status opaque-proxy/null-prototype characterization required by issue #72. Preserve the complete prior 33-test prefix and all production code."
       }
     }
+  },
+  "77": {
+    "scope": "Deliver only issue #77: append its one test and complete its own OpenSpec plan. Preserve all existing test bytes, production modules, accepted models, prior plans, provider scaffolds, tools, hooks, dependencies, workflow and check policies. The host owns OpenSpec metadata. No ProductShape apply, protected acceptance or merge is authorized to the worker.",
+    "paths": [
+      "src/summary.test.mjs",
+      "openspec/changes/issue-77-proposal/"
+    ],
+    "checks": [
+      [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      [
+        "npm",
+        "run",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "lighthouse",
+        "verify"
+      ],
+      [
+        "node",
+        "scripts/lighthouse-guard.mjs",
+        "verify"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "prodshape",
+        "citations",
+        "verify",
+        "--provider",
+        "openspec",
+        "--format",
+        "json"
+      ]
+    ],
+    "reviewRequired": false,
+    "verification": {
+      "paths": [
+        "package.json",
+        "package-lock.json",
+        "src/summary.test.mjs",
+        "scripts/consumer-preflight.mjs",
+        ".github/workflows/ci.yml",
+        ".lighthouse/github.json",
+        ".lighthouse/implement.json",
+        "docs/consumer-contract.md",
+        "tools/existing-tool.mjs",
+        "scripts/verify-delivery-profile.mjs",
+        "src/summary.mjs",
+        "src/format-summary.mjs"
+      ],
+      "corrections": {
+        "src/summary.test.mjs": "Append only the inherited non-enumerable primitive-status test required by issue #77. Preserve every existing byte as a prefix and all original assertions; do not alter production modules."
+      }
+    }
   }
 }

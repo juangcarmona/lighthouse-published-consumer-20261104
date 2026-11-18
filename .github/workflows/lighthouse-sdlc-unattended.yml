@@ -18,9 +18,6 @@ concurrency:
   group: lighthouse-issue-${{ inputs.issue }}
   cancel-in-progress: false
   queue: max
-env:
-  LIGHTHOUSE_ENGINE_CONFIG: ${{ inputs.issue == '54' && vars.LIGHTHOUSE_ACCEPTANCE_PLAN_REPAIR == 'true' && '/home/juan/.local/share/lighthouse-runtime/home-published-consumer/414-ff-plan-probe-engine.json' || '/home/juan/.local/share/lighthouse-runtime/engine.json' }}
-
 jobs:
   deliver:
     if: vars.LIGHTHOUSE_AUTOMATION_ENABLED == 'true' && github.actor == github.repository_owner
@@ -37,7 +34,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.3
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.30.1
       - name: Load current product source
         uses: actions/checkout@v5
         with:
