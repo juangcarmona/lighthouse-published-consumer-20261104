@@ -26,12 +26,11 @@ on:
         required: false
         type: string
   needs: [prepare]
-if: needs.prepare.outputs.eligible == 'true'
+if: github.run_attempt == 1 && needs.prepare.outputs.eligible == 'true'
 runs-on: [self-hosted, linux, lighthouse-workflow]
 runs-on-slim: ubuntu-24.04
-timeout-minutes: 55
+timeout-minutes: 150
 env:
-  LIGHTHOUSE_ENGINE_CONFIG: ${{ vars.LIGHTHOUSE_ACCEPTANCE_MISSING_RUNTIME == 'true' && '/home/juan/.local/share/lighthouse-runtime/home-published-consumer/216-missing-runtime-engine.json' || '/home/juan/.local/share/lighthouse-runtime/engine.json' }}
   LIGHTHOUSE_RECOVERY_ENABLED: ${{ vars.LIGHTHOUSE_RECOVERY_ENABLED }}
   LIGHTHOUSE_MAINTENANCE_ISSUES: ${{ vars.LIGHTHOUSE_MAINTENANCE_ISSUES }}
   LIGHTHOUSE_EPIC_CAPACITY: ${{ vars.LIGHTHOUSE_EPIC_CAPACITY }}
@@ -58,6 +57,7 @@ safe-outputs:
   report-incomplete: false
   threat-detection: false
   report-failure-as-issue: false
+  report-failed-jobs: false
   report-missing-tool: false
   report-missing-data: false
   noop:
@@ -75,7 +75,7 @@ steps:
     with:
       node-version: 24
   - name: Install the published Lighthouse harness
-    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.3
+    run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.30.1
   - name: Load the authorized issue context
     uses: actions/download-artifact@v8
     with:
@@ -92,6 +92,7 @@ post-steps:
       path: |
         ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/envelope.json
         ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/runtime.json
+        ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/visual-evidence.json
         ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/engine-error.json
         ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/changes.json
         ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/checks.json
@@ -105,6 +106,14 @@ post-steps:
       path: ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/evidence/
       if-no-files-found: ignore
       retention-days: 30
+  - name: Preserve visual captures separately from bounded JSON results
+    if: always()
+    uses: actions/upload-artifact@v7
+    with:
+      name: lighthouse-visual-${{ inputs.issue }}-${{ github.run_attempt }}
+      path: ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/evidence/visual/*.png
+      if-no-files-found: ignore
+      retention-days: 30
   - name: Preserve OpenCode diagnostic events
     if: always()
     uses: actions/upload-artifact@v7
@@ -114,7 +123,11 @@ post-steps:
       if-no-files-found: ignore
       retention-days: 14
 jobs:
+  agent:
+    # Cover the bounded host admission hook, engine slot wait and execution step.
+    timeout-minutes: 360
   prepare:
+    if: github.run_attempt == 1
     concurrency:
       group: ${{ inputs.epic-parent && format('lighthouse-issue-{0}', inputs.epic-parent) || format('lighthouse-prepare-{0}', github.run_id) }}
       cancel-in-progress: false
@@ -138,7 +151,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.3
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.30.1
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -186,7 +199,7 @@ jobs:
       queue: max
     name: Validate, publish and release
     needs: [prepare, pre_activation, activation, agent]
-    if: always() && needs.prepare.result == 'success' && needs.prepare.outputs.eligible == 'true'
+    if: always() && github.run_attempt == 1 && needs.prepare.result == 'success' && needs.prepare.outputs.eligible == 'true'
     runs-on: ubuntu-24.04
     permissions:
       actions: write
@@ -201,7 +214,7 @@ jobs:
         with:
           node-version: 24
       - name: Install the published Lighthouse harness
-        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.22.3
+        run: npm install --prefix .lighthouse-harness --ignore-scripts --no-audit --no-fund --package-lock=true --save-exact @juangcarmona/lighthouse-sdlc@0.30.1
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -216,6 +229,16 @@ jobs:
         with:
           name: lighthouse-implement-result-${{ inputs.issue }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Inspect the retained visual assessment
+        id: visual
+        if: needs.agent.result == 'success'
+        run: node .lighthouse-harness/node_modules/@juangcarmona/lighthouse-sdlc/src/issue-actions.mjs visual-artifact
+      - name: Load the retained visual captures
+        if: needs.agent.result == 'success' && steps.visual.outputs.visual == 'true'
+        uses: actions/download-artifact@v8
+        with:
+          name: lighthouse-visual-${{ inputs.issue }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lighthouse-${{ github.run_id }}-${{ github.run_attempt }}/evidence/visual
       - name: Require an executed agent
         if: needs.agent.result != 'success'
         run: |
@@ -286,6 +309,6 @@ Execute `implement` using `/input/context.json` and `/harness/skills/implement/S
 
 Report public progress before inspection and whenever a decision, test result or blocker changes the plan. Explain the evidence briefly; avoid dumping tool payloads. Use the shell to install public dependencies, edit source and run checks. Preserve content and author-owned work. Record completed tasks accurately. Store screenshots, test reports and a concise retrospective in `/output/evidence/`; the host retains them as Actions artifacts.
 
-Run the commands in `implementation.policy.checks` and relevant repository checks. The host reruns those commands independently on a clean candidate without provider or GitHub credentials. Return `/output/envelope.json` with the supplied identity. A required human visual/content decision is a real blocker: use `blocked`, record it in `pendingReview`, and still deliver the reviewable code. A passed `done` assessment requires all required evidence and reviews. Reserve time to write the envelope within the 30-minute engine limit.
+Run the commands in `implementation.policy.checks` and relevant repository checks. The host reruns those commands independently on a clean candidate without provider or GitHub credentials. Return `/output/envelope.json` with the supplied identity. A required human visual/content decision is a real blocker: use `blocked`, record it in `pendingReview`, and still deliver the reviewable code. A passed `done` assessment requires all required evidence and reviews. Read `context.executionBudget` for the effective deadline (at most 60 minutes for implementation, narrowed by any enclosing delivery deadline). Finish managed commands and write the envelope before that deadline; an incomplete command is not a passing check.
 
 The separate publisher rechecks owner authority, source revision, write scope and check receipts before opening a fresh PR. It never updates an existing branch, merges, closes the issue or starts another stage. End after writing the envelope; the adapter records gh-aw completion.
